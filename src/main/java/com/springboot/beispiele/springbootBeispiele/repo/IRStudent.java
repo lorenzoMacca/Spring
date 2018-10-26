@@ -1,6 +1,7 @@
 package com.springboot.beispiele.springbootBeispiele.repo;
 
 import com.springboot.beispiele.springbootBeispiele.entities.EStudent;
+import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IRStudent extends JpaRepository<EStudent, Long> {

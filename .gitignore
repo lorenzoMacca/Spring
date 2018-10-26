@@ -26,3 +26,4 @@
 /.nb-gradle/
 
 src/main/java/com/springboot/beispiele/springbootBeispiele/entities/QEStudent.java
+src/main/java/com/springboot/beispiele/springbootBeispiele/entities/QENote.java
