@@ -28,9 +28,5 @@ public class EStudent {
         this.name = name;
     }
 
-    public EStudent(@NotNull String name, List<ENote> noten) {
-        this.name = name;
-        this.noten = noten;
-    }
 }
 

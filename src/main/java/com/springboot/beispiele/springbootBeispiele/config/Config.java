@@ -2,8 +2,13 @@ package com.springboot.beispiele.springbootBeispiele.config;
 
 import com.springboot.beispiele.springbootBeispiele.entities.ENote;
 import com.springboot.beispiele.springbootBeispiele.entities.EStudent;
-import com.springboot.beispiele.springbootBeispiele.repo.IRNote;
-import com.springboot.beispiele.springbootBeispiele.repo.IRStudent;
+import com.springboot.beispiele.springbootBeispiele.intermediate.IQuery;
+import com.springboot.beispiele.springbootBeispiele.intermediate.Query;
+import com.springboot.beispiele.springbootBeispiele.repo.note.IRONote;
+import com.springboot.beispiele.springbootBeispiele.repo.note.IRWNote;
+import com.springboot.beispiele.springbootBeispiele.repo.student.IROStudent;
+import com.springboot.beispiele.springbootBeispiele.repo.student.IRWStudent;
+import com.springboot.beispiele.springbootBeispiele.service.common.student.SStudent;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +17,25 @@ import org.springframework.context.annotation.Configuration;
 public class Config {
 
     @Bean
-    public CommandLineRunner populateDBWithStudents(IRStudent studentRepository, IRNote noteRepository){
+    Query<EStudent, Long> getQueryStudent(IROStudent repository){
+        return new Query<>(repository);
+    }
+
+    @Bean
+    Query<ENote, Long> getQueryNote(IRONote repository){
+        return new Query<>(repository);
+    }
+
+    @Bean
+    SStudent getStudentService(Query<EStudent, Long> query){
+        return new SStudent(query);
+
+    }
+
+
+    @Bean
+    public CommandLineRunner populateDBWithStudents(IRWStudent studentRepository,
+                                                    IRWNote noteRepository){
         return args -> {
 
             //noteRepository.deleteAll();
