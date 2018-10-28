@@ -12,8 +12,10 @@ public class CStudent {
     @Autowired
     private SStudent commonService;
 
-    @GetMapping(name = "students")
+    @GetMapping(name = "/students")
     public Iterable<EStudent> getAllStudents(){
         return commonService.getAll();
     }
+
+
 }

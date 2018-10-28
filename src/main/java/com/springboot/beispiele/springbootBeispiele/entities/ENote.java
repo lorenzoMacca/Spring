@@ -1,5 +1,6 @@
 package com.springboot.beispiele.springbootBeispiele.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -20,6 +21,7 @@ public class ENote {
 
     @ManyToOne
     @JoinColumn(name = "student_id")
+    @JsonBackReference
     private EStudent student;
 
     public ENote(Integer note) {

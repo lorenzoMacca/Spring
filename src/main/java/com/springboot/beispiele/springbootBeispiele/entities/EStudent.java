@@ -1,7 +1,9 @@
 package com.springboot.beispiele.springbootBeispiele.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
@@ -21,12 +23,20 @@ public class EStudent {
     @NotNull
     private String name;
 
+    @NonNull
+    private Integer age;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "student")
+    @JsonManagedReference
     private List<ENote> noten;
 
     public EStudent(@NotNull String name) {
         this.name = name;
     }
 
+    public EStudent(@NotNull String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
 }
 
