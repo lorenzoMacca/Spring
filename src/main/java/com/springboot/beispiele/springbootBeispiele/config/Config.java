@@ -38,8 +38,8 @@ public class Config {
                                                     IRWNote noteRepository){
         return args -> {
 
-            //noteRepository.deleteAll();
-            //studentRepository.deleteAll();
+            noteRepository.deleteAll();;
+            studentRepository.deleteAll();
 
             EStudent s1 = new EStudent("Lorenzo Cozza", 27);
             ENote e11 = new ENote(1, s1);
