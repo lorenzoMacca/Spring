@@ -38,5 +38,9 @@ public class EStudent {
         this.name = name;
         this.age = age;
     }
+
+    public void add(ENote eNote){
+        this.noten.add(eNote);
+    }
 }
 

@@ -42,9 +42,11 @@ public class Config {
 
             EStudent s1 = new EStudent("Lorenzo Cozza", 27);
             ENote e11 = new ENote(1, s1);
-
+            ENote e112 = new ENote(2, s1);
             studentRepository.save(s1);
             noteRepository.save(e11);
+            noteRepository.save(e112);
+
 
             EStudent s2 = new EStudent("Salvatore Cozza", 18);
             ENote e12 = new ENote(2, s2);
@@ -58,8 +60,6 @@ public class Config {
 
             EStudent s4 = new EStudent("Daniela Gutschmidt", 23);
             EStudent s5 = new EStudent("Francesco Ventura", 27);
-
-
 
 
             studentRepository.save(s4);
