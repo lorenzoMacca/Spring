@@ -1,11 +1,10 @@
-package com.springboot.beispiele.springbootBeispiele.service.common.student;
+package com.springboot.beispiele.springbootBeispiele.service.student;
 
 import com.springboot.beispiele.springbootBeispiele.entities.EStudent;
 import com.springboot.beispiele.springbootBeispiele.intermediate.IQuery;
 import com.springboot.beispiele.springbootBeispiele.service.common.CommonService;
-import org.springframework.stereotype.Service;
 
-public class SStudent extends CommonService<EStudent,Long> {
+public class SStudent extends ASStudent {
 
     public SStudent(IQuery<EStudent, Long> query) {
         super(query);
