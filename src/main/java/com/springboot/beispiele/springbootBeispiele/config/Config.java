@@ -2,6 +2,7 @@ package com.springboot.beispiele.springbootBeispiele.config;
 
 import com.springboot.beispiele.springbootBeispiele.entities.ENote;
 import com.springboot.beispiele.springbootBeispiele.entities.EStudent;
+import com.springboot.beispiele.springbootBeispiele.intermediate.IQuery;
 import com.springboot.beispiele.springbootBeispiele.intermediate.Query;
 import com.springboot.beispiele.springbootBeispiele.repo.note.IRONote;
 import com.springboot.beispiele.springbootBeispiele.repo.note.IRWNote;
@@ -26,7 +27,7 @@ public class Config {
     }
 
     @Bean
-    SStudent getStudentService(Query<EStudent, Long> query){
+    SStudent getStudentService(IQuery<EStudent, Long> query){
         return new SStudent(query);
 
     }

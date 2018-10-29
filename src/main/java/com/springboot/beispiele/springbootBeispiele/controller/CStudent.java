@@ -1,6 +1,8 @@
 package com.springboot.beispiele.springbootBeispiele.controller;
 
 import com.springboot.beispiele.springbootBeispiele.entities.EStudent;
+import com.springboot.beispiele.springbootBeispiele.service.common.CommonService;
+import com.springboot.beispiele.springbootBeispiele.service.student.ASStudent;
 import com.springboot.beispiele.springbootBeispiele.service.student.SStudent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CStudent {
 
     @Autowired
-    private SStudent commonService;
+    private CommonService<EStudent,Long> commonService;
 
     @GetMapping(name = "/students")
     public Iterable<EStudent> getAllStudents(){
