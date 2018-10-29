@@ -29,7 +29,6 @@ public class Config {
     @Bean
     SStudent getStudentService(IQuery<EStudent, Long> query){
         return new SStudent(query);
-
     }
 
 
