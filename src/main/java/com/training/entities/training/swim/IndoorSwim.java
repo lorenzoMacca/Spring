@@ -1,5 +1,6 @@
 package com.training.entities.training.swim;
 
+import com.training.core.training.swim.ISwim;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class IndoorSwim {
+public class IndoorSwim implements ISwim {
 
     @Id
     @GeneratedValue

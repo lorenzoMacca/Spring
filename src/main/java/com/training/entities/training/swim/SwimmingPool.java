@@ -1,5 +1,6 @@
 package com.training.entities.training.swim;
 
+import com.training.core.training.swim.ISwimmingPool;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SwimmingPool {
+public class SwimmingPool implements ISwimmingPool {
 
     @Id
     @GeneratedValue
