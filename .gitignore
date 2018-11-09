@@ -29,3 +29,4 @@ src/main/java/com/springboot/beispiele/springbootBeispiele/entities/QEStudent.ja
 src/main/java/com/springboot/beispiele/springbootBeispiele/entities/QENote.java
 src/main/java/com/training/entities/training/swim/QIndoorSwim.java
 src/main/java/com/training/entities/training/swim/QSwimmingPool.java
+src/main/java/com/training/entities/training/swim/QSwimmingPlace.java

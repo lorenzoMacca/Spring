@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SwimmingPool implements ISwimmingPool {
+public class SwimmingPlace implements ISwimmingPool {
 
     @Id
     @GeneratedValue
@@ -33,7 +33,7 @@ public class SwimmingPool implements ISwimmingPool {
 
     URL webpage;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "swimmingPool")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "swimmingPlace")
     @JsonBackReference
     List<IndoorSwim> indoorSwims;
 

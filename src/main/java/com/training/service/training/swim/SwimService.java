@@ -16,4 +16,17 @@ public class SwimService implements ISwimService {
     public Iterable<IndoorSwim> getAllIndorSwimActivities() {
         return this.swimTrainingRepository.findAll();
     }
+
+    @Override
+    public Boolean delete(Long indoorSwimId) {
+        this.swimTrainingRepository.deleteById(indoorSwimId);
+        return this.swimTrainingRepository.existsById(indoorSwimId);
+    }
+
+    @Override
+    public IndoorSwim saveIndorSwimActivity(Long id, String date, String description, Long swimmingPlaceId) {
+        return null;
+    }
+
+
 }

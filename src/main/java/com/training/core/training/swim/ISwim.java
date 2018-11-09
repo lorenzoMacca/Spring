@@ -5,5 +5,5 @@ import com.training.core.training.ITraining;
 
 public interface ISwim extends ITraining {
 
-    ISwimmingPool getSwimmingPool();
+    ISwimmingPool getSwimmingPlace();
 }

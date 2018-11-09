@@ -33,5 +33,5 @@ public class IndoorSwim implements ISwim {
     @NotNull
     @ManyToOne
     @JsonManagedReference
-    SwimmingPool swimmingPool;
+    SwimmingPlace swimmingPlace;
 }
