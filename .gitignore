@@ -27,3 +27,5 @@
 
 src/main/java/com/springboot/beispiele/springbootBeispiele/entities/QEStudent.java
 src/main/java/com/springboot/beispiele/springbootBeispiele/entities/QENote.java
+src/main/java/com/training/entities/training/swim/QIndoorSwim.java
+src/main/java/com/training/entities/training/swim/QSwimmingPool.java
