@@ -72,4 +72,6 @@ dependencies {
 
 	annotationProcessor  "org.projectlombok:lombok:${lombokVersion}"
 	compile("org.projectlombok:lombok:${lombokVersion}")
+
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 }

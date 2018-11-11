@@ -5,8 +5,11 @@ import com.training.entities.training.swim.IndoorSwim;
 import com.training.service.training.swim.ISwimminPlaceService;
 import com.training.service.training.swim.SwimService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 public class SwimController {
@@ -51,4 +54,5 @@ public class SwimController {
     ){
         return this.swimService.saveIndorSwimActivity(id, date, description, swimmingPlaceId);
     }
+
 }
