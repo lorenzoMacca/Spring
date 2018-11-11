@@ -1,11 +1,12 @@
 package com.training.config;
 
-import com.google.common.primitives.UnsignedInteger;
 import com.training.core.training.swim.PoolLength;
 import com.training.entities.training.swim.IndoorSwim;
 import com.training.entities.training.swim.SwimmingPlace;
+import com.training.entities.training.user.User;
 import com.training.repo.training.swim.ISwimTrainingRepository;
 import com.training.repo.training.swim.ISwimmingPlaceRepository;
+import com.training.repo.user.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -22,10 +23,17 @@ public class DBPopulator implements CommandLineRunner {
     @Autowired
     ISwimTrainingRepository swimTrainingRepository;
 
+    @Autowired
+    IUserRepository userRepository;
+
     @Override
     public void run(String... args) {
 
-        swimmingPlaceRepository.deleteAll();
+        userRepository.deleteAll();
+        //swimmingPlaceRepository.deleteAll();
+
+        User lorenzo = User.builder().name("Lorenzo").surname("cozza").build();
+        userRepository.save(lorenzo);
 
         SwimmingPlace swimmingPlaceMitte = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Mitte").address("Wohlbeck Str.").build());
         SwimmingPlace swimmingPlaceOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Ost").address("Hafenstraße").build());
@@ -37,6 +45,7 @@ public class DBPopulator implements CommandLineRunner {
                 .numberOfLaps(25)
                 .duration(55.0)
                 .poolLength(PoolLength.POOL_LENGTH_50_METER)
+                .user(lorenzo)
                 .build());
 
         swimTrainingRepository.save(IndoorSwim.builder()
@@ -44,6 +53,7 @@ public class DBPopulator implements CommandLineRunner {
                 .description("interessant")
                 .numberOfLaps(25)
                 .duration(55.0)
+                .user(lorenzo)
                 .poolLength(PoolLength.POOL_LENGTH_50_METER)
                 .swimmingPlace(swimmingPlaceOst)
                 .build());

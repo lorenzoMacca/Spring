@@ -1,9 +1,9 @@
 package com.training.entities.training.swim;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.google.common.primitives.UnsignedInteger;
 import com.training.core.training.swim.ISwim;
 import com.training.core.training.swim.PoolLength;
+import com.training.entities.training.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,9 +41,13 @@ public class IndoorSwim implements ISwim {
     @NotNull
     PoolLength poolLength;
 
-
     @NotNull
     @ManyToOne
     @JsonManagedReference
     SwimmingPlace swimmingPlace;
+
+    @NotNull
+    @ManyToOne
+    @JsonManagedReference
+    User user;
 }
