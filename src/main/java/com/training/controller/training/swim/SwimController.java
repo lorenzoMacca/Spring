@@ -1,24 +1,38 @@
 package com.training.controller.training.swim;
 
+import com.querydsl.core.types.Predicate;
 import com.training.entities.training.swim.IndoorSwim;
-import com.training.service.training.swim.ISwimService;
 import com.training.service.training.swim.ISwimminPlaceService;
+import com.training.service.training.swim.SwimService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SwimController {
 
     @Autowired
-    ISwimService swimService;
+    SwimService swimService;
 
     @Autowired
     ISwimminPlaceService swimminPoolService;
 
 
+    /**
+     *
+     * controller for swim activities
+     */
+
     @GetMapping("/training/swim/activities")
     public Iterable<IndoorSwim> getAllSwimActivities(){
         return this.swimService.getAllIndorSwimActivities();
+    }
+
+    @GetMapping("/training/swim/activities_by_user_id")
+    public Iterable<IndoorSwim> getAllSwimActivitiesByUserId(
+            @QuerydslPredicate(root = IndoorSwim.class) Predicate predicate
+            ){
+        return this.swimService.getAllIndorSwimActivities(predicate);
     }
 
     @DeleteMapping("/training/swim/activity/delete")

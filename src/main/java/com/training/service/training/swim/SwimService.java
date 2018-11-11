@@ -1,5 +1,6 @@
 package com.training.service.training.swim;
 
+import com.querydsl.core.types.Predicate;
 import com.training.entities.training.swim.IndoorSwim;
 import com.training.entities.training.swim.SwimmingPlace;
 import com.training.repo.training.swim.ISwimTrainingRepository;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class SwimService implements ISwimService {
+public class SwimService {
 
     @Autowired
     ISwimTrainingRepository swimTrainingRepository;
@@ -17,19 +18,19 @@ public class SwimService implements ISwimService {
     @Autowired
     ISwimminPlaceService swimminPlaceService;
 
-
-    @Override
     public Iterable<IndoorSwim> getAllIndorSwimActivities() {
         return this.swimTrainingRepository.findAll();
     }
 
-    @Override
+    public Iterable<IndoorSwim> getAllIndorSwimActivities(Predicate predicate){
+        return this.swimTrainingRepository.findAll(predicate);
+    }
+
     public Boolean delete(Long indoorSwimId) {
         this.swimTrainingRepository.deleteById(indoorSwimId);
         return this.swimTrainingRepository.existsById(indoorSwimId);
     }
 
-    @Override
     public IndoorSwim saveIndorSwimActivity(Long id, String date, String description, Long swimmingPlaceId) {
         try {
             SwimmingPlace swimmingPlace = this.swimminPlaceService.findById(swimmingPlaceId);
