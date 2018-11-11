@@ -1,7 +1,9 @@
 package com.training.entities.training.swim;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.google.common.primitives.UnsignedInteger;
 import com.training.core.training.swim.ISwim;
+import com.training.core.training.swim.PoolLength;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +31,16 @@ public class IndoorSwim implements ISwim {
     Date date;
 
     String description;
+
+    @NotNull
+    Double duration;
+
+    @NotNull
+    Integer numberOfLaps;
+
+    @NotNull
+    PoolLength poolLength;
+
 
     @NotNull
     @ManyToOne

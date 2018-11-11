@@ -1,5 +1,7 @@
 package com.training.config;
 
+import com.google.common.primitives.UnsignedInteger;
+import com.training.core.training.swim.PoolLength;
 import com.training.entities.training.swim.IndoorSwim;
 import com.training.entities.training.swim.SwimmingPlace;
 import com.training.repo.training.swim.ISwimTrainingRepository;
@@ -28,7 +30,22 @@ public class DBPopulator implements CommandLineRunner {
         SwimmingPlace swimmingPlaceMitte = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Mitte").address("Wohlbeck Str.").build());
         SwimmingPlace swimmingPlaceOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Ost").address("Hafenstraße").build());
 
-        swimTrainingRepository.save(IndoorSwim.builder().date(new Date()).description("sehr gut").swimmingPlace(swimmingPlaceMitte).build());
-        swimTrainingRepository.save(IndoorSwim.builder().date(new Date()).description("interessant").swimmingPlace(swimmingPlaceOst).build());
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(new Date())
+                .description("sehr gut")
+                .swimmingPlace(swimmingPlaceMitte)
+                .numberOfLaps(25)
+                .duration(55.0)
+                .poolLength(PoolLength.POOL_LENGTH_50_METER)
+                .build());
+
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(new Date())
+                .description("interessant")
+                .numberOfLaps(25)
+                .duration(55.0)
+                .poolLength(PoolLength.POOL_LENGTH_50_METER)
+                .swimmingPlace(swimmingPlaceOst)
+                .build());
     }
 }
