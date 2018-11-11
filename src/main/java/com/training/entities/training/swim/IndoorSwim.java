@@ -50,4 +50,9 @@ public class IndoorSwim implements ISwim {
     @ManyToOne
     @JsonManagedReference
     User user;
+
+    @NotNull
+    @ManyToOne
+    @JsonManagedReference
+    SwimTrainingPattern pattern;
 }
