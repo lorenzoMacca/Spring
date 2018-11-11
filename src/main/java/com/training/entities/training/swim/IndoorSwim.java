@@ -46,7 +46,7 @@ public class IndoorSwim implements ISwim {
     SwimmingPlace swimmingPlace;
 
     @NotNull
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_swim",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "indoor_swim_id")}

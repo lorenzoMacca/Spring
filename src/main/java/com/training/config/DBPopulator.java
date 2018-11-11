@@ -34,7 +34,7 @@ public class DBPopulator implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        userRepository.deleteAll();
+        userRepository.deleteAllInBatch();
         swimmingPlaceRepository.deleteAll();
         swimTRainingPatternRepository.deleteAll();
 
