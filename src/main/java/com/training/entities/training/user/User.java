@@ -28,7 +28,7 @@ public class User {
     @NotNull
     private String surname;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.MERGE}, mappedBy = "users")
     @JsonBackReference
     List<IndoorSwim> indoorSwims;
 

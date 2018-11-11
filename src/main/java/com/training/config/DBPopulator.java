@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 @Component
@@ -41,6 +44,11 @@ public class DBPopulator implements CommandLineRunner {
         User daniela = User.builder().name("Daniela").surname("Gutschmidt").build();
         userRepository.save(daniela);
 
+        List<User> buddies = new ArrayList<>();
+        buddies.add(lorenzo);
+        buddies.add(daniela);
+
+
         SwimTrainingPattern p300p200p100 = SwimTrainingPattern.builder().pattern("300-200-100").build();
         SwimTrainingPattern p250p150p100 = SwimTrainingPattern.builder().pattern("250-150-100").build();
         swimTRainingPatternRepository.save(p250p150p100);
@@ -59,7 +67,7 @@ public class DBPopulator implements CommandLineRunner {
                 .numberOfLaps(54)
                 .duration(40.0)
                 .poolLength(PoolLength.POOL_LENGTH_25_METER)
-                .user(lorenzo)
+                .users(buddies)
                 .pattern(p250p150p100)
                 .build());
 
@@ -72,7 +80,7 @@ public class DBPopulator implements CommandLineRunner {
                 .numberOfLaps(26)
                 .duration(35.0)
                 .poolLength(PoolLength.POOL_LENGTH_50_METER)
-                .user(lorenzo)
+                .users(buddies)
                 .pattern(p300p200p100)
                 .build());
     }
