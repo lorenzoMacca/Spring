@@ -1,7 +1,6 @@
 package com.training.entities.training.swim;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.training.core.training.swim.ISwimmingPool;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

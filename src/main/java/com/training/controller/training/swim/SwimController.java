@@ -2,7 +2,7 @@ package com.training.controller.training.swim;
 
 import com.training.entities.training.swim.IndoorSwim;
 import com.training.service.training.swim.ISwimService;
-import com.training.service.training.swim.ISwimminPoolService;
+import com.training.service.training.swim.ISwimminPlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ public class SwimController {
     ISwimService swimService;
 
     @Autowired
-    ISwimminPoolService swimminPoolService;
+    ISwimminPlaceService swimminPoolService;
 
 
     @GetMapping("/training/swim/activities")
