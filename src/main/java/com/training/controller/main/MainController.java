@@ -1,21 +1,16 @@
 package com.training.controller.main;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Map;
+import com.training.entities.training.user.User;
 
 @Controller
 public class MainController {
 
-    // inject via application.properties
-    @Value("${welcome.message:test}")
-    private String message = "Hello World";
-
     @RequestMapping("/")
-    public String welcome(Map<String, Object> model) {
-        model.put("message", this.message);
+    public String welcome(final Model model) {
+        model.addAttribute("currentUser", User.builder().name("Lorenzo").surname("cozza").build());
         return "welcome";
     }
 }
