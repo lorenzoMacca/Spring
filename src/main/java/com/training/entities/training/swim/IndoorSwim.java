@@ -1,14 +1,14 @@
 package com.training.entities.training.swim;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.training.core.training.swim.ISwim;
 import com.training.core.training.swim.PoolLength;
+import com.training.entities.training.session.Session;
 import com.training.entities.training.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -19,31 +19,31 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class IndoorSwim implements ISwim {
+public class IndoorSwim{
 
     @Id
     @GeneratedValue
     @NotNull
-    Long id;
+    private Long id;
 
     @NotNull
-    Date date;
+    private Date date;
 
-    String description;
-
-    @NotNull
-    Double duration;
+    private String description;
 
     @NotNull
-    Integer numberOfLaps;
+    private Double duration;
 
     @NotNull
-    PoolLength poolLength;
+    private Integer numberOfLaps;
+
+    @NotNull
+    private PoolLength poolLength;
 
     @NotNull
     @ManyToOne
-    @JsonManagedReference
-    SwimmingPlace swimmingPlace;
+    @JsonBackReference
+    private SwimmingPlace swimmingPlace;
 
     @NotNull
     @ManyToMany(fetch = FetchType.LAZY)
@@ -52,11 +52,16 @@ public class IndoorSwim implements ISwim {
             inverseJoinColumns = {@JoinColumn(name = "indoor_swim_id")}
     )
     @JsonManagedReference
-    List<User> users;
+    private List<User> users;
 
     @NotNull
     @ManyToOne
     @JsonManagedReference
-    SwimTrainingPattern pattern;
+    private SwimTrainingPattern pattern;
+    
+    @NotNull
+    @ManyToOne
+    @JsonBackReference
+    Session session;
 
 }

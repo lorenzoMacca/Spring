@@ -1,7 +1,7 @@
 package com.training.entities.training.swim;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.training.core.training.swim.ISwimmingPool;
+import com.training.core.training.swim.ISwimmingPlace;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SwimmingPlace implements ISwimmingPool {
+public class SwimmingPlace implements ISwimmingPlace {
 
     @Id
     @GeneratedValue

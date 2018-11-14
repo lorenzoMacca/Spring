@@ -1,10 +1,12 @@
 package com.training.config;
 
 import com.training.core.training.swim.PoolLength;
+import com.training.entities.training.session.Session;
 import com.training.entities.training.swim.IndoorSwim;
 import com.training.entities.training.swim.SwimTrainingPattern;
 import com.training.entities.training.swim.SwimmingPlace;
 import com.training.entities.training.user.User;
+import com.training.repo.training.session.ISessionRepository;
 import com.training.repo.training.swim.ISwimTRainingPatternRepository;
 import com.training.repo.training.swim.ISwimTrainingRepository;
 import com.training.repo.training.swim.ISwimmingPlaceRepository;
@@ -28,11 +30,14 @@ public class DBPopulator implements CommandLineRunner {
     IUserRepository userRepository;
     @Autowired
     ISwimTRainingPatternRepository swimTRainingPatternRepository;
+    @Autowired
+    ISessionRepository sessionRepository;
 
     @Override
     public void run(String... args) {
 
         userRepository.deleteAllInBatch();
+        sessionRepository.deleteAll();
         swimmingPlaceRepository.deleteAll();
         swimTRainingPatternRepository.deleteAll();
 
@@ -59,6 +64,8 @@ public class DBPopulator implements CommandLineRunner {
         SwimmingPlace swimmingPlaceOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Ost").address("Hafenstraße").build());
         SwimmingPlace kielHoern = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Ost").address("Hafenstraße").build());
 
+        Session s1 = Session.builder().build();
+        this.sessionRepository.save(s1);
         Calendar c1 = Calendar.getInstance();
         c1.set(2018, Calendar.NOVEMBER, 8, 19, 21);
         swimTrainingRepository.save(IndoorSwim.builder()
@@ -70,8 +77,11 @@ public class DBPopulator implements CommandLineRunner {
                 .poolLength(PoolLength.POOL_LENGTH_25_METER)
                 .users(buddies)
                 .pattern(p250p150p100)
+                .session(s1)
                 .build());
 
+        Session s2 = Session.builder().build();
+        this.sessionRepository.save(s2);
         Calendar c2 = Calendar.getInstance();
         c2.set(2018, Calendar.NOVEMBER, 11, 11, 25);
         swimTrainingRepository.save(IndoorSwim.builder()
@@ -83,8 +93,11 @@ public class DBPopulator implements CommandLineRunner {
                 .poolLength(PoolLength.POOL_LENGTH_50_METER)
                 .users(lorenzoUser)
                 .pattern(p300p200p100)
+                .session(s2)
                 .build());
         
+        Session s3 = Session.builder().build();
+        this.sessionRepository.save(s3);
         Calendar c3 = Calendar.getInstance();
         c2.set(2018, Calendar.NOVEMBER, 13, 18, 0);
         swimTrainingRepository.save(IndoorSwim.builder()
@@ -95,6 +108,7 @@ public class DBPopulator implements CommandLineRunner {
                 .poolLength(PoolLength.POOL_LENGTH_25_METER)
                 .users(buddies)
                 .pattern(p250p150p100)
+                .session(s3)
                 .build());
     }
 }

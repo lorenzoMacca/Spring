@@ -37,14 +37,12 @@ public class SwimService {
             Date d = new Date();
             //TODO: convert data
             IndoorSwim indoorSwim = IndoorSwim.builder().id(id).date(d).description(description).swimmingPlace(swimmingPlace).build();
-            this.swimTrainingRepository.save(indoorSwim);
+            return this.swimTrainingRepository.save(indoorSwim);
         }catch (IllegalArgumentException e){
             //TODO: log exception
-        }finally {
-            return null;
         }
-
-
+        
+        return null;
     }
 
 
