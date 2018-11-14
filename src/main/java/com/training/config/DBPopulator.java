@@ -84,5 +84,17 @@ public class DBPopulator implements CommandLineRunner {
                 .users(lorenzoUser)
                 .pattern(p300p200p100)
                 .build());
+        
+        Calendar c3 = Calendar.getInstance();
+        c2.set(2018, Calendar.NOVEMBER, 13, 18, 0);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(c3.getTime())
+                .swimmingPlace(HiltrupSchwimmbad)
+                .numberOfLaps(60)
+                .duration(50.0)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p250p150p100)
+                .build());
     }
 }
