@@ -14,8 +14,9 @@ import com.training.repo.user.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 
@@ -67,10 +68,9 @@ public class DBPopulator implements CommandLineRunner {
 
         Session s1 = Session.builder().build();
         this.sessionRepository.save(s1);
-        Calendar c1 = Calendar.getInstance();
-        c1.set(2018, Calendar.NOVEMBER, 8, 19, 21);
         swimTrainingRepository.save(IndoorSwim.builder()
-                .date(c1.getTime())
+                .date(LocalDate.of(2018, 11, 8))
+                .time(LocalTime.of(19, 21))
                 .description("Great feelings in the new pool in Kiel. pattern: 250-150-100")
                 .swimmingPlace(HiltrupSchwimmbad)
                 .numberOfLaps(54)
@@ -83,10 +83,9 @@ public class DBPopulator implements CommandLineRunner {
 
         Session s2 = Session.builder().build();
         this.sessionRepository.save(s2);
-        Calendar c2 = Calendar.getInstance();
-        c2.set(2018, Calendar.NOVEMBER, 11, 11, 25);
         swimTrainingRepository.save(IndoorSwim.builder()
-                .date(c2.getTime())
+                .date(LocalDate.of(2018, 11, 11))
+                .time(LocalTime.of(11, 25))
                 .description("Great feelings in the new pool in Kiel. 300-200-100-300-200-100-300")
                 .swimmingPlace(kielHoern)
                 .numberOfLaps(26)
@@ -99,10 +98,9 @@ public class DBPopulator implements CommandLineRunner {
         
         Session s3 = Session.builder().build();
         this.sessionRepository.save(s3);
-        Calendar c3 = Calendar.getInstance();
-        c2.set(2018, Calendar.NOVEMBER, 13, 18, 0);
         swimTrainingRepository.save(IndoorSwim.builder()
-                .date(c3.getTime())
+                .date(LocalDate.of(2018, 11, 13))
+                .time(LocalTime.of(18,0))
                 .swimmingPlace(HiltrupSchwimmbad)
                 .numberOfLaps(60)
                 .duration(50.0)
@@ -114,10 +112,9 @@ public class DBPopulator implements CommandLineRunner {
         
         Session s4 = Session.builder().build();
         this.sessionRepository.save(s4);
-        Calendar c4 = Calendar.getInstance();
-        c2.set(2018, Calendar.NOVEMBER, 15, 18, 0);
         swimTrainingRepository.save(IndoorSwim.builder()
-                .date(c4.getTime())
+                .date(LocalDate.of(2018, 11, 15))
+                .time(LocalTime.of(18, 0))
                 .swimmingPlace(HiltrupSchwimmbad)
                 .numberOfLaps(60)
                 .duration(50.0)
@@ -129,10 +126,9 @@ public class DBPopulator implements CommandLineRunner {
         
         Session s5 = Session.builder().build();
         this.sessionRepository.save(s5);
-        Calendar c5 = Calendar.getInstance();
-        c2.set(2018, Calendar.NOVEMBER, 16, 18, 0);
         swimTrainingRepository.save(IndoorSwim.builder()
-                .date(c5.getTime())
+                .date(LocalDate.of(2018, 11, 16))
+                .time(LocalTime.of(19, 20))
                 .swimmingPlace(mitteSchwimmbad)
                 .numberOfLaps(48)
                 .duration(40.0)

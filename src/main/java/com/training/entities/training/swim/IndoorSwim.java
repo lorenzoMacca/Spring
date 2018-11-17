@@ -11,7 +11,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -27,7 +29,11 @@ public class IndoorSwim{
     private Long id;
 
     @NotNull
-    private Date date;
+    private LocalDate date;
+    
+    @NotNull
+    private LocalTime time;
+    
 
     private String description;
 

@@ -31,7 +31,7 @@ public class SwimService {
         return this.swimTrainingRepository.existsById(indoorSwimId);
     }
 
-    public IndoorSwim saveIndorSwimActivity(Long id, String date, String description, Long swimmingPlaceId) {
+    /*public IndoorSwim saveIndorSwimActivity(Long id, String date, String description, Long swimmingPlaceId) {
         try {
             SwimmingPlace swimmingPlace = this.swimminPlaceService.findById(swimmingPlaceId);
             Date d = new Date();
@@ -43,7 +43,7 @@ public class SwimService {
         }
         
         return null;
-    }
+    }*/
 
 
 }

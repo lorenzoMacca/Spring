@@ -49,7 +49,7 @@ public class SwimController {
             @RequestParam(name = "description", required = false) String description,
             @RequestParam(name = "swimmingPlaceId", required = true) Long swimmingPlaceId
     ){
-        return this.swimService.saveIndorSwimActivity(id, date, description, swimmingPlaceId);
+        return null; //this.swimService.saveIndorSwimActivity(id, date, description, swimmingPlaceId);
     }
 
 }
