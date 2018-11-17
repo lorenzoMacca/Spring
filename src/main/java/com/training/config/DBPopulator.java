@@ -62,7 +62,8 @@ public class DBPopulator implements CommandLineRunner {
 
         SwimmingPlace HiltrupSchwimmbad = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hiltrup").address("Wohlbeck Str.").build());
         SwimmingPlace swimmingPlaceOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Ost").address("Hafenstraße").build());
-        SwimmingPlace kielHoern = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Ost").address("Hafenstraße").build());
+        SwimmingPlace kielHoern = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Kiel").address("Hafenstraße").build());
+        SwimmingPlace mitteSchwimmbad = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Mitte").address("Wohlbeck Str.").build());
 
         Session s1 = Session.builder().build();
         this.sessionRepository.save(s1);
@@ -109,6 +110,36 @@ public class DBPopulator implements CommandLineRunner {
                 .users(buddies)
                 .pattern(p250p150p100)
                 .session(s3)
+                .build());
+        
+        Session s4 = Session.builder().build();
+        this.sessionRepository.save(s4);
+        Calendar c4 = Calendar.getInstance();
+        c2.set(2018, Calendar.NOVEMBER, 15, 18, 0);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(c4.getTime())
+                .swimmingPlace(HiltrupSchwimmbad)
+                .numberOfLaps(60)
+                .duration(50.0)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p250p150p100)
+                .session(s4)
+                .build());
+        
+        Session s5 = Session.builder().build();
+        this.sessionRepository.save(s5);
+        Calendar c5 = Calendar.getInstance();
+        c2.set(2018, Calendar.NOVEMBER, 16, 18, 0);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(c5.getTime())
+                .swimmingPlace(mitteSchwimmbad)
+                .numberOfLaps(48)
+                .duration(40.0)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(lorenzoUser)
+                .pattern(p300p200p100)
+                .session(s5)
                 .build());
     }
 }
