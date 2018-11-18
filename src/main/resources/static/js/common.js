@@ -60,3 +60,12 @@ function createAndFillTabs(parentId, items){
 	html += "</ul>";
 	$(parentId).html(html);
 }
+
+function addBasicChart(selector, column){
+	var chart = c3.generate({
+	    bindto: selector,
+	    data: {
+	    columns: [column]
+	    }
+	});
+}

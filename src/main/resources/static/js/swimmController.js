@@ -38,7 +38,9 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 	console.log("[WHERE] - updateViewGetAllSwimCB");
 	console.log(JSON.stringify(data));
 	var columns = ['Date', 'Distance (m)', 'Location'];
-	var neededData = new Array(2);
+	var neededData = new Array(data.length);
+	var dataForChart = new Array(data.length+1);
+	dataForChart[0] = "Distance (m)";
 	for (var i = 0; i < data.length; i++) {
 		var tmpDate = "" + data[i].date + " " + data[i].time.substring(0,5);
 		var poolLength = 0;
@@ -48,11 +50,15 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 			poolLength = 50;
 		}
 		var tmpDistance = parseInt(data[i].numberOfLaps) * poolLength;
+		dataForChart[i+1] = tmpDistance;
 		var tmp = [tmpDate, tmpDistance, data[i].swimmingPlace.name];
 		neededData[i]=tmp;
 	}
 	console.log(JSON.stringify(neededData));
 	createAndFillTable(activityTable, columns, neededData);
+	//dataForChart.push("Distance (m)");
+	//dataForChart.reverse();
+	addBasicChart('#chart', dataForChart);
 }
 
 function addTabs(){
