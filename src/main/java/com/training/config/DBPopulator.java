@@ -124,18 +124,32 @@ public class DBPopulator implements CommandLineRunner {
                 .session(s4)
                 .build());
         
-//        Session s5 = Session.builder().build();
-//        this.sessionRepository.save(s5);
-//        swimTrainingRepository.save(IndoorSwim.builder()
-//                .date(LocalDate.of(2018, 11, 16))
-//                .time(LocalTime.of(19, 20))
-//                .swimmingPlace(hallenbadMitte)
-//                .numberOfLaps(48)
-//                .duration(40.0)
-//                .poolLength(PoolLength.POOL_LENGTH_25_METER)
-//                .users(lorenzoUser)
-//                .pattern(p300p200p100)
-//                .session(s5)
-//                .build());
+        Session s5 = Session.builder().build();
+        this.sessionRepository.save(s5);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2018, 11, 16))
+                .time(LocalTime.of(19, 20))
+                .swimmingPlace(hallenbadMitte)
+                .numberOfLaps(48)
+                .duration(40.0)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(lorenzoUser)
+                .pattern(p300p200p100)
+                .session(s5)
+                .build());
+        
+        Session s6 = Session.builder().build();
+        this.sessionRepository.save(s6);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2018, 11, 18))
+                .time(LocalTime.of(13, 30))
+                .swimmingPlace(hallenbadMitte)
+                .numberOfLaps(60)
+                .duration(48.0)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p300p200p100)
+                .session(s6)
+                .build());
     }
 }

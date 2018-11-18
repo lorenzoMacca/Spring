@@ -6,6 +6,8 @@ import com.training.entities.training.swim.IndoorSwim;
 import com.training.service.training.swim.ISwimminPlaceService;
 import com.training.service.training.swim.SwimService;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +30,10 @@ public class SwimController {
      */
 
     @GetMapping("/training/swim/activities")
-    public Iterable<IndoorSwim> getAllSwimActivities(){
-        return this.swimService.getAllIndorSwimActivities();
+    public List<IndoorSwim> getAllSwimActivities(){
+    	List<IndoorSwim> res = (List<IndoorSwim>) this.swimService.getAllIndorSwimActivities();
+        Collections.sort(res);
+        return res;
     }
 
     @GetMapping("/training/swim/activities_by_user_id")

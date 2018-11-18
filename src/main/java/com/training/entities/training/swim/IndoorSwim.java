@@ -21,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class IndoorSwim{
+public class IndoorSwim implements Comparable<IndoorSwim>{
 
     @Id
     @GeneratedValue
@@ -79,4 +79,11 @@ public class IndoorSwim{
     	return null;
     }
 
+	@Override
+	public int compareTo(IndoorSwim o) {
+		IndoorSwim r = (IndoorSwim)o;
+		return r.getDate().compareTo(this.getDate());
+	}
+
+	
 }

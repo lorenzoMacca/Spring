@@ -50,9 +50,9 @@ function createAndFillTabs(parentId, items){
 	for (var i = 0; i < items.length; i++) {
 		html += "<li class='nav-item'>";
 			if(i==0){
-				html += "<a class='nav-link active' href='#'>"+ items[i] +"</a>";
+				html += "<a id='tabBtn"+i+"' class='nav-link active' href='#'>"+ items[i] +"</a>";
 			}else{
-				html += "<a class='nav-link' href='#'>"+ items[i] +"</a>";
+				html += "<a id='tabBtn"+i+"' class='nav-link' href='#'>"+ items[i] +"</a>";
 			}
 		    
 		html += "</li>";
