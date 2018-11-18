@@ -48,7 +48,7 @@ public class IndoorSwim{
 
     @NotNull
     @ManyToOne
-    @JsonBackReference
+    @JsonManagedReference
     private SwimmingPlace swimmingPlace;
 
     @NotNull

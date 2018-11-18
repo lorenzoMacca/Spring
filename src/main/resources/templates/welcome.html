@@ -45,7 +45,7 @@
 <!-- [END] nav bar -->
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
+<div class="jumbotron" id="welcomeMessageContainerId">
     <div class="container">
         <h1 class="display-3" th:text="'Ciao ' + ${currentUser.name}"></h1>
         <p>will ich hier was schreiben?</p>
@@ -54,9 +54,12 @@
 </div>
 
 <div class="container">
-    
-    <div id="activityTable">
+    <div>
+        
+        <div id="activityTable">
+        </div>
     </div>
+    
 
 </div>
 <!-- /.container -->

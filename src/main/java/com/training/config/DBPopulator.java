@@ -60,11 +60,11 @@ public class DBPopulator implements CommandLineRunner {
         SwimTrainingPattern p250p150p100 = SwimTrainingPattern.builder().pattern("250-150-100").build();
         swimTRainingPatternRepository.save(p250p150p100);
         swimTRainingPatternRepository.save(p300p200p100);
-
-        SwimmingPlace HiltrupSchwimmbad = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hiltrup").address("Wohlbeck Str.").build());
-        SwimmingPlace swimmingPlaceOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Ost").address("Hafenstraße").build());
-        SwimmingPlace kielHoern = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Kiel").address("Hafenstraße").build());
-        SwimmingPlace mitteSchwimmbad = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Mitte").address("Wohlbeck Str.").build());
+        
+        SwimmingPlace hallenbadHiltrup = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Hiltrup").address("Westfalenstraße 201 48165 Münster").build());
+        SwimmingPlace hallenbadOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Ost").address("Mauritz-Lindenweg 101 48145 Münster").build());
+        SwimmingPlace kielHoern = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hörnbad").address("Anni-Wadle-Weg 1, 24143 Kiel").build());
+        SwimmingPlace hallenbadMitte = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Mitte").address("Badestr. 8 48149 Münster").build());
 
         Session s1 = Session.builder().build();
         this.sessionRepository.save(s1);
@@ -72,7 +72,7 @@ public class DBPopulator implements CommandLineRunner {
                 .date(LocalDate.of(2018, 11, 8))
                 .time(LocalTime.of(19, 21))
                 .description("Great feelings in the new pool in Kiel. pattern: 250-150-100")
-                .swimmingPlace(HiltrupSchwimmbad)
+                .swimmingPlace(hallenbadHiltrup)
                 .numberOfLaps(54)
                 .duration(40.0)
                 .poolLength(PoolLength.POOL_LENGTH_25_METER)
@@ -101,7 +101,7 @@ public class DBPopulator implements CommandLineRunner {
         swimTrainingRepository.save(IndoorSwim.builder()
                 .date(LocalDate.of(2018, 11, 13))
                 .time(LocalTime.of(18,0))
-                .swimmingPlace(HiltrupSchwimmbad)
+                .swimmingPlace(hallenbadHiltrup)
                 .numberOfLaps(60)
                 .duration(50.0)
                 .poolLength(PoolLength.POOL_LENGTH_25_METER)
@@ -115,7 +115,7 @@ public class DBPopulator implements CommandLineRunner {
         swimTrainingRepository.save(IndoorSwim.builder()
                 .date(LocalDate.of(2018, 11, 15))
                 .time(LocalTime.of(18, 0))
-                .swimmingPlace(HiltrupSchwimmbad)
+                .swimmingPlace(hallenbadHiltrup)
                 .numberOfLaps(60)
                 .duration(50.0)
                 .poolLength(PoolLength.POOL_LENGTH_25_METER)
@@ -129,7 +129,7 @@ public class DBPopulator implements CommandLineRunner {
         swimTrainingRepository.save(IndoorSwim.builder()
                 .date(LocalDate.of(2018, 11, 16))
                 .time(LocalTime.of(19, 20))
-                .swimmingPlace(mitteSchwimmbad)
+                .swimmingPlace(hallenbadMitte)
                 .numberOfLaps(48)
                 .duration(40.0)
                 .poolLength(PoolLength.POOL_LENGTH_25_METER)
