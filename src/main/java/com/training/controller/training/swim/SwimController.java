@@ -5,11 +5,8 @@ import com.training.core.training.swim.SwimMonatView;
 import com.training.entities.training.swim.IndoorSwim;
 import com.training.service.training.swim.ISwimminPlaceService;
 import com.training.service.training.swim.SwimService;
-
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.web.bind.annotation.*;

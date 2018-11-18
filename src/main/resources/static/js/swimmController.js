@@ -6,11 +6,30 @@ var POOL_LENGTH_50_METER = "POOL_LENGTH_50_METER";
 
 function addTabButtonFunktionalities(){
 	$("#tabBtn0").unbind('click').click(function(){
-		console.log("click0");
+		getAll(INDOR_SWIM_GET_ALL, updateViewGetAllSwimCB, null);
+		$(tabBtn1).removeClass("active");
+		$(tabBtn0).addClass("active");
 	});
 	$("#tabBtn1").unbind('click').click(function(){
-		console.log("click1");
+		getAll(INDOR_SWIM_GET_ALL_MONTH_VIEW, updateViewGetAllSwimMonthViewCB, null);
+		$(tabBtn0).removeClass("active");
+		$(tabBtn1).addClass("active");
 	});
+}
+
+function updateViewGetAllSwimMonthViewCB(data, dataForCallback){
+	console.log("[WHERE] - updateViewGetAllSwimMonthViewCB");
+	console.log(JSON.stringify(data));
+	var columns = ['Date', 'Distance (m)'];
+	var neededData = new Array(data.length);
+	for (var i = 0; i < data.length; i++) {
+		var yearMonth = data[i].year + "-" + data[i].month;
+		var distance = data[i].totalDistance;
+		var tmp = [yearMonth, distance];
+		neededData[i]=tmp;
+		createAndFillTable(activityTable, columns, neededData);
+		
+	}
 }
 
 
@@ -34,6 +53,9 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 	}
 	console.log(JSON.stringify(neededData));
 	createAndFillTable(activityTable, columns, neededData);
+}
+
+function addTabs(){
 	var tabItems = ['All Activities', 'Month View'];
 	createAndFillTabs(activityTabsId, tabItems);
 	addTabButtonFunktionalities();
@@ -41,6 +63,7 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 
 $("#swimSectionMenuBtnId").click(function(){
 	getAll(INDOR_SWIM_GET_ALL, updateViewGetAllSwimCB, null);
+	addTabs();
 	$("#welcomeMessageContainerId").fadeOut();
 	$(activityContainer).fadeIn("slow");
 });
