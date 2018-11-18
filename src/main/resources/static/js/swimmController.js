@@ -1,12 +1,22 @@
 var INDOR_SWIM_GET_ALL = '/training/swim/activities';
+var POOL_LENGTH_25_METER = "POOL_LENGTH_25_METER";
+var POOL_LENGTH_50_METER = "POOL_LENGTH_50_METER";
 
 function updateViewGetAllSwimCB(data, dataForCallback){
 	console.log("[WHERE] - updateViewGetAllSwimCB");
 	console.log(JSON.stringify(data));
-	var columns = ['Date', 'Time', 'distance'];
-	var neededData = new Array(3);
+	var columns = ['Date', 'distance (m)'];
+	var neededData = new Array(2);
 	for (var i = 0; i < data.length; i++) {
-		var tmp = [data[i].date, data[i].time, data[i].numberOfLaps];
+		var tmpDate = "" + data[i].date + " " + data[i].time.substring(0,5);
+		var poolLength = 0;
+		if(data[i].poolLength == POOL_LENGTH_25_METER){
+			poolLength = 25;
+		}else if(data[i].poolLength == POOL_LENGTH_50_METER){
+			poolLength = 50;
+		}
+		var tmpDistance = parseInt(data[i].numberOfLaps) * poolLength;
+		var tmp = [tmpDate, tmpDistance];
 		neededData[i]=tmp;
 	}
 	console.log(JSON.stringify(neededData));
