@@ -2,7 +2,7 @@ var INDOR_SWIM_GET_ALL = '/training/swim/activities';
 var POOL_LENGTH_25_METER = "POOL_LENGTH_25_METER";
 var POOL_LENGTH_50_METER = "POOL_LENGTH_50_METER";
 
-$(activityTable).fadeOut();
+$(activityContainer).fadeOut();
 
 
 function updateViewGetAllSwimCB(data, dataForCallback){
@@ -25,11 +25,12 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 	}
 	console.log(JSON.stringify(neededData));
 	createAndFillTable(activityTable, columns, neededData);
-	
+	var tabItems = ['All Activities', 'Month View'];
+	createAndFillTabs(activityTabsId, tabItems);
 }
 
 $("#swimSectionMenuBtnId").click(function(){
 	getAll(INDOR_SWIM_GET_ALL, updateViewGetAllSwimCB, null);
 	$("#welcomeMessageContainerId").fadeOut();
-	$(activityTable).fadeIn("slow");
+	$(activityContainer).fadeIn("slow");
 });

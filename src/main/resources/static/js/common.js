@@ -41,3 +41,19 @@ function createAndFillTable(parentId, columns, data){
 		  +"</table>"
 	$(parentId).html(html);
 }
+
+function createAndFillTabs(parentId, items){
+	var html = "<ul class='nav nav-pills'>";
+	for (var i = 0; i < items.length; i++) {
+		html += "<li class='nav-item'>";
+			if(i==0){
+				html += "<a class='nav-link active' href='#'>"+ items[i] +"</a>";
+			}else{
+				html += "<a class='nav-link' href='#'>"+ items[i] +"</a>";
+			}
+		    
+		html += "</li>";
+	};
+	html += "</ul>";
+	$(parentId).html(html);
+}
