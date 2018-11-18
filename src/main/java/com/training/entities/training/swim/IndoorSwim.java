@@ -69,5 +69,14 @@ public class IndoorSwim{
     @ManyToOne
     @JsonBackReference
     Session session;
+    
+    public Float getSwimmingPlaceDistance() {
+    	if(this.poolLength == PoolLength.POOL_LENGTH_25_METER) {
+    		return new Float(25);
+    	}else if(this.poolLength == PoolLength.POOL_LENGTH_50_METER) {
+    		return new Float(50);
+    	}
+    	return null;
+    }
 
 }

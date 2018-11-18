@@ -2,8 +2,6 @@ var INDOR_SWIM_GET_ALL = '/training/swim/activities';
 var POOL_LENGTH_25_METER = "POOL_LENGTH_25_METER";
 var POOL_LENGTH_50_METER = "POOL_LENGTH_50_METER";
 
-$(activityContainer).fadeOut();
-
 
 function updateViewGetAllSwimCB(data, dataForCallback){
 	

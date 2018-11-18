@@ -1,9 +1,13 @@
 package com.training.controller.training.swim;
 
 import com.querydsl.core.types.Predicate;
+import com.training.core.training.swim.SwimMonatView;
 import com.training.entities.training.swim.IndoorSwim;
 import com.training.service.training.swim.ISwimminPlaceService;
 import com.training.service.training.swim.SwimService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +54,11 @@ public class SwimController {
             @RequestParam(name = "swimmingPlaceId", required = true) Long swimmingPlaceId
     ){
         return null; //this.swimService.saveIndorSwimActivity(id, date, description, swimmingPlaceId);
+    }
+    
+    @GetMapping("/training/swim/activities/month_view")
+    public List<SwimMonatView> getAllSwimActivitiesMonatView(){
+    	return this.swimService.getAllSwimActivitiesMonatView();
     }
 
 }
