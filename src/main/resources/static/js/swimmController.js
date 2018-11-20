@@ -22,14 +22,18 @@ function updateViewGetAllSwimMonthViewCB(data, dataForCallback){
 	console.log(JSON.stringify(data));
 	var columns = ['Date', 'Distance (m)'];
 	var neededData = new Array(data.length);
+	var dataForChart = new Array(data.length);
 	for (var i = 0; i < data.length; i++) {
 		var yearMonth = data[i].year + "-" + data[i].month;
 		var distance = data[i].totalDistance;
 		var tmp = [yearMonth, distance];
 		neededData[i]=tmp;
-		createAndFillTable(activityTable, columns, neededData);
+		dataForChart[i] = distance;
 		
 	}
+	createAndFillTable(activityTable, columns, neededData);
+	dataForChart.unshift('Distance');
+	addBasicBarChart('#chart', dataForChart, dataForChart[0]);
 }
 
 

@@ -69,3 +69,36 @@ function addBasicChart(selector, column){
 	    }
 	});
 }
+
+function addBasicBarChart(selector, column, serieName){
+	var chart = c3.generate({
+	    bindto: selector,
+	    data: {
+	      columns: [
+	          column
+	      ],
+	      axes: {
+	        data2: 'y2'
+	      },
+	      types: {
+	    	 Distance: 'bar' // ADD
+	      }
+	    },
+	    axis: {
+	      y: {
+	        label: {
+	          text: 'Y Label',
+	          position: 'outer-middle'
+	        }
+	      },
+	      y2: {
+	        show: true,
+	        label: {
+	          text: 'Y2 Label',
+	          position: 'outer-middle'
+	        }
+	      }
+	    }
+	});
+}
+
