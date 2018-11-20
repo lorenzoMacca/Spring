@@ -58,11 +58,13 @@ public class DBPopulator implements CommandLineRunner {
 
         SwimTrainingPattern p300p200p100 = SwimTrainingPattern.builder().pattern("300-200-100").build();
         SwimTrainingPattern p250p150p100 = SwimTrainingPattern.builder().pattern("250-150-100").build();
+        SwimTrainingPattern p300p200 = SwimTrainingPattern.builder().pattern("300-200").build();
         swimTRainingPatternRepository.save(p250p150p100);
         swimTRainingPatternRepository.save(p300p200p100);
+        swimTRainingPatternRepository.save(p300p200);
         
         SwimmingPlace hallenbadHiltrup = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Hiltrup").address("Westfalenstraße 201 48165 Münster").build());
-        //SwimmingPlace hallenbadOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Ost").address("Mauritz-Lindenweg 101 48145 Münster").build());
+        SwimmingPlace hallenbadOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Ost").address("Mauritz-Lindenweg 101 48145 Münster").build());
         SwimmingPlace kielHoern = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hörnbad").address("Anni-Wadle-Weg 1, 24143 Kiel").build());
         SwimmingPlace hallenbadMitte = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Mitte").address("Badestr. 8 48149 Münster").build());
 
@@ -150,6 +152,20 @@ public class DBPopulator implements CommandLineRunner {
                 .users(buddies)
                 .pattern(p300p200p100)
                 .session(s6)
+                .build());
+        
+        Session s7 = Session.builder().build();
+        this.sessionRepository.save(s7);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2018, 11, 20))
+                .time(LocalTime.of(18, 30))
+                .swimmingPlace(hallenbadOst)
+                .numberOfLaps(60)
+                .duration(48.0)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p300p200)
+                .session(s7)
                 .build());
     }
 }
