@@ -26,7 +26,7 @@ public class SwimController {
      * controller for swim activities
      */
 
-    @GetMapping("/training/swim/activities")
+    @GetMapping("/swims")
     public List<IndoorSwim> getAllSwimActivities(){
     	List<IndoorSwim> res = (List<IndoorSwim>) this.swimService.getAllIndorSwimActivities();
         Collections.sort(res);
@@ -57,7 +57,7 @@ public class SwimController {
         return null; //this.swimService.saveIndorSwimActivity(id, date, description, swimmingPlaceId);
     }
     
-    @GetMapping("/training/swim/activities/month_view")
+    @GetMapping("/swims/month_view")
     public List<SwimMonatView> getAllSwimActivitiesMonatView(){
     	return this.swimService.getAllSwimActivitiesMonatView();
     }

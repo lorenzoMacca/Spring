@@ -1,6 +1,5 @@
 package com.training.service.training.swim;
 
-import com.google.common.collect.Lists;
 import com.querydsl.core.types.Predicate;
 import com.training.core.training.swim.SwimMonatView;
 import com.training.entities.training.swim.IndoorSwim;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service

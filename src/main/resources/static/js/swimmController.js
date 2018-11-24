@@ -1,5 +1,5 @@
-var INDOR_SWIM_GET_ALL = '/training/swim/activities';
-var INDOR_SWIM_GET_ALL_MONTH_VIEW = '/training/swim/activities/month_view';
+var INDOR_SWIM_GET_ALL = '/swims';
+var INDOR_SWIM_GET_ALL_MONTH_VIEW = '/swims/month_view';
 
 var POOL_LENGTH_25_METER = "POOL_LENGTH_25_METER";
 var POOL_LENGTH_50_METER = "POOL_LENGTH_50_METER";
