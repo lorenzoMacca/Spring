@@ -1,12 +1,15 @@
 package com.training.service.training.swim;
 
+import com.google.common.collect.Lists;
 import com.querydsl.core.types.Predicate;
 import com.training.core.training.swim.SwimMonatView;
 import com.training.entities.training.swim.IndoorSwim;
 import com.training.repo.training.swim.ISwimTrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -17,6 +20,10 @@ public class SwimService {
 
     @Autowired
     ISwimminPlaceService swimminPlaceService;
+    
+    public Iterable<IndoorSwim> getAllIndorSwimActivitiesWithPaging(int page, int size) {
+        return this.swimTrainingRepository.findAll(PageRequest.of(page, size));
+    }
 
     public Iterable<IndoorSwim> getAllIndorSwimActivities() {
         return this.swimTrainingRepository.findAll();

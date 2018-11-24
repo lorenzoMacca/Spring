@@ -61,5 +61,13 @@ public class SwimController {
     public List<SwimMonatView> getAllSwimActivitiesMonatView(){
     	return this.swimService.getAllSwimActivitiesMonatView();
     }
+    
+    @GetMapping("/swims/{page}/{size}")
+    Iterable<IndoorSwim> getAllSwimsWithPaging(
+    		@PathVariable("size") int size,
+    		@PathVariable("page") int page
+    		){
+    	return this.swimService.getAllIndorSwimActivitiesWithPaging(page, size);
+    }
 
 }
