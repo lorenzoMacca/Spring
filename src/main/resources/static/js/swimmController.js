@@ -32,8 +32,12 @@ function updateViewGetAllSwimMonthViewCB(data, dataForCallback){
 		
 	}
 	createAndFillTable(activityTable, columns, neededData);
+	var minY = Math.min(dataForChart);
+	var maxY = Math.max(dataForChart);
+	minY -= 100;
+	maxY += 100;
 	dataForChart.unshift('Distance');
-	addBasicBarChart('#chart', dataForChart, dataForChart[0]);
+	addBasicBarChart('#chart', dataForChart, dataForChart[0], 0, maxY);
 }
 
 

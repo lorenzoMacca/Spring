@@ -223,7 +223,7 @@ public class DBPopulator implements CommandLineRunner {
         ExerciseSet es92 = ExerciseSet.builder().exercise(e9).build();
         this.setRepository.save(es92);
         this.repsRepository.save(ExerciseRep.builder()
-        		.value(45.0)
+        		.value(60.0)
         		.exerciseSet(es92)
         		.build());
     }
