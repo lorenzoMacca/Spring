@@ -1,11 +1,17 @@
 package com.training.config;
 
 import com.training.core.training.swim.PoolLength;
+import com.training.entities.training.exercise.Exercise;
+import com.training.entities.training.exercise.ExerciseRep;
+import com.training.entities.training.exercise.ExerciseSet;
+import com.training.entities.training.exercise.ExerciseType;
 import com.training.entities.training.session.Session;
 import com.training.entities.training.swim.IndoorSwim;
 import com.training.entities.training.swim.SwimTrainingPattern;
 import com.training.entities.training.swim.SwimmingPlace;
 import com.training.entities.training.user.User;
+import com.training.repo.training.exercise.IExerciseRepRepository;
+import com.training.repo.training.exercise.IExerciseSetRepository;
 import com.training.repo.training.exercise.IExerciseTrainingRepository;
 import com.training.repo.training.exercise.IExerciseTypeRepository;
 import com.training.repo.training.session.ISessionRepository;
@@ -39,21 +45,30 @@ public class DBPopulator implements CommandLineRunner {
     IExerciseTypeRepository exerciseTypeRepository;
     @Autowired
     IExerciseTrainingRepository exerciseRepository;
+    @Autowired
+    IExerciseSetRepository setRepository;
+    @Autowired
+    IExerciseRepRepository repsRepository;
 
     @Override
     public void run(String... args) {
+    	
 
         userRepository.deleteAllInBatch();
         sessionRepository.deleteAll();
         swimmingPlaceRepository.deleteAll();
         swimTRainingPatternRepository.deleteAll();
+        exerciseTypeRepository.deleteAll();
 
         User lorenzo = User.builder().name("Lorenzo").surname("cozza").build();
         userRepository.save(lorenzo);
 
         User daniela = User.builder().name("Daniela").surname("Gutschmidt").build();
         userRepository.save(daniela);
-
+        
+        ExerciseType plank = ExerciseType.builder().name("Plank").description("abs core").build();
+        this.exerciseTypeRepository.save(plank);        
+        
         List<User> buddies = new ArrayList<>();
         buddies.add(lorenzo);
         buddies.add(daniela);
@@ -187,5 +202,29 @@ public class DBPopulator implements CommandLineRunner {
                 .pattern(p300p200)
                 .session(s8)
                 .build());
+        
+        Session s9 = Session.builder().build();
+        this.sessionRepository.save(s9);
+        Exercise e9 = Exercise.builder()
+		.date(LocalDate.of(2018, 11, 25))
+        .time(LocalTime.of(11, 00))
+        .duration(10.0)
+        .users(lorenzoUser)
+        .exerciseType(plank)
+        .session(s9)
+        .build();
+        this.exerciseRepository.save(e9);
+        ExerciseSet es91 = ExerciseSet.builder().exercise(e9).build();
+        this.setRepository.save(es91);
+        this.repsRepository.save(ExerciseRep.builder()
+        		.value(60.0)
+        		.exerciseSet(es91)
+        		.build());
+        ExerciseSet es92 = ExerciseSet.builder().exercise(e9).build();
+        this.setRepository.save(es92);
+        this.repsRepository.save(ExerciseRep.builder()
+        		.value(45.0)
+        		.exerciseSet(es92)
+        		.build());
     }
 }

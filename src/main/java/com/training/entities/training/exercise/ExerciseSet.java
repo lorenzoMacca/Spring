@@ -1,4 +1,4 @@
-package com.training.entities.training.session;
+package com.training.entities.training.exercise;
 
 import java.util.List;
 
@@ -7,10 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.training.entities.training.exercise.Exercise;
-import com.training.entities.training.swim.IndoorSwim;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,21 +21,23 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Session {
+public class ExerciseSet {
 	
 	@Id
-	@GeneratedValue
-	private Long id;
+    @GeneratedValue
+    @NotNull
+    private Long id;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="session")
-    @JsonManagedReference
-	List<IndoorSwim> indoorSwims;
+	@NotNull
+	@ManyToOne
+	@JsonBackReference
+	Exercise exercise;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="session")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="exerciseSet")
 	@JsonManagedReference
-	List<Exercise> exercises;
+	List<ExerciseRep> reps;
 
 }
