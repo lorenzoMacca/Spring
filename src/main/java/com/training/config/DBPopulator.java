@@ -6,6 +6,8 @@ import com.training.entities.training.swim.IndoorSwim;
 import com.training.entities.training.swim.SwimTrainingPattern;
 import com.training.entities.training.swim.SwimmingPlace;
 import com.training.entities.training.user.User;
+import com.training.repo.training.exercise.IExerciseTrainingRepository;
+import com.training.repo.training.exercise.IExerciseTypeRepository;
 import com.training.repo.training.session.ISessionRepository;
 import com.training.repo.training.swim.ISwimTRainingPatternRepository;
 import com.training.repo.training.swim.ISwimTrainingRepository;
@@ -33,6 +35,10 @@ public class DBPopulator implements CommandLineRunner {
     ISwimTRainingPatternRepository swimTRainingPatternRepository;
     @Autowired
     ISessionRepository sessionRepository;
+    @Autowired
+    IExerciseTypeRepository exerciseTypeRepository;
+    @Autowired
+    IExerciseTrainingRepository exerciseRepository;
 
     @Override
     public void run(String... args) {
