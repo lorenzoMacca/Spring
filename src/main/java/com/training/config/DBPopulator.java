@@ -80,9 +80,12 @@ public class DBPopulator implements CommandLineRunner {
         SwimTrainingPattern p300p200p100 = SwimTrainingPattern.builder().pattern("300-200-100").build();
         SwimTrainingPattern p250p150p100 = SwimTrainingPattern.builder().pattern("250-150-100").build();
         SwimTrainingPattern p300p200 = SwimTrainingPattern.builder().pattern("300-200").build();
+        SwimTrainingPattern p400p300 = SwimTrainingPattern.builder().pattern("400-300").build();
+        
         swimTRainingPatternRepository.save(p250p150p100);
         swimTRainingPatternRepository.save(p300p200p100);
         swimTRainingPatternRepository.save(p300p200);
+        swimTRainingPatternRepository.save(p400p300);
         
         SwimmingPlace hallenbadHiltrup = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Hiltrup").address("Westfalenstraße 201 48165 Münster").build());
         SwimmingPlace hallenbadOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Ost").address("Mauritz-Lindenweg 101 48145 Münster").build());
@@ -239,6 +242,20 @@ public class DBPopulator implements CommandLineRunner {
                 .users(buddies)
                 .pattern(p300p200)
                 .session(s10)
+                .build());
+        
+        Session s11 = Session.builder().build();
+        this.sessionRepository.save(s11);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2018, 11, 27))
+                .time(LocalTime.of(19, 30))
+                .swimmingPlace(hallenbadOst)
+                .numberOfLaps(60)
+                .duration(39.0)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p400p300)
+                .session(s11)
                 .build());
     }
 }
