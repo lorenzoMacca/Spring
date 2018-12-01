@@ -9,6 +9,9 @@ import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -47,14 +50,13 @@ public class SwimController {
         return this.swimService.delete(activityId);
     }
 
-    @PutMapping("/training/swim/activity/save")
-    public IndoorSwim saveIndorSwimActivity(
-            @RequestParam(name = "id", required = false) Long id,
-            @RequestParam(name = "date", required = true) String date,
-            @RequestParam(name = "description", required = false) String description,
-            @RequestParam(name = "swimmingPlaceId", required = true) Long swimmingPlaceId
+    @PostMapping("/indorSwim/")
+    public ResponseEntity<IndoorSwim> saveIndorSwimActivity(
+            @RequestBody String indoorSwimJson
     ){
-        return null; //this.swimService.saveIndorSwimActivity(id, date, description, swimmingPlaceId);
+    	IndoorSwim indoorSwimFromDb = this.swimService.save(indoorSwimJson);
+    	HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity<>(indoorSwimFromDb, headers, HttpStatus.CREATED);
     }
     
     @GetMapping("/swims/month_view")

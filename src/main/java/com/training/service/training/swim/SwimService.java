@@ -1,12 +1,18 @@
 package com.training.service.training.swim;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.querydsl.core.types.Predicate;
 import com.training.core.training.swim.SwimMonatView;
+import com.training.entities.common.EntityConverter;
 import com.training.entities.training.swim.IndoorSwim;
 import com.training.repo.training.swim.ISwimTrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +24,9 @@ public class SwimService {
 
     @Autowired
     ISwimminPlaceService swimminPlaceService;
+    
+    @Autowired
+    EntityConverter<JsonNode, IndoorSwim> jsonToIndoorSwimConverter;
     
     public Iterable<IndoorSwim> getAllIndorSwimActivitiesWithPaging(int page, int size) {
         return this.swimTrainingRepository.findAll(PageRequest.of(page, size));
@@ -65,19 +74,18 @@ public class SwimService {
 		
 	}
 
-    /*public IndoorSwim saveIndorSwimActivity(Long id, String date, String description, Long swimmingPlaceId) {
-        try {
-            SwimmingPlace swimmingPlace = this.swimminPlaceService.findById(swimmingPlaceId);
-            Date d = new Date();
-            //TODO: convert data
-            IndoorSwim indoorSwim = IndoorSwim.builder().id(id).date(d).description(description).swimmingPlace(swimmingPlace).build();
-            return this.swimTrainingRepository.save(indoorSwim);
-        }catch (IllegalArgumentException e){
-            //TODO: log exception
-        }
-        
-        return null;
-    }*/
+    public IndoorSwim save(String json) {
+    	ObjectMapper mapper = new ObjectMapper();
+    	try {
+			JsonNode jsonNode = mapper.readTree(json);
+			IndoorSwim indoorSwim = this.jsonToIndoorSwimConverter.convert(jsonNode);
+			return this.swimTrainingRepository.save(indoorSwim);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
+    }
 
 
 }
