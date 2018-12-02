@@ -18,6 +18,19 @@ import com.training.repo.training.swim.ISwimTRainingPatternRepository;
 import com.training.repo.training.swim.ISwimmingPlaceRepository;
 import com.training.repo.user.IUserRepository;
 
+//{
+//	"date":"2018-11-21",
+//	"time":"17:30",
+//	"description":"",
+//	"duration":"30",
+//	"numberOfLaps":"50",
+//	"swimmingPlace":"2344",
+//	"pattern":"2340",
+//	"users": ["2337", "2338"],
+//	"session":"2376",
+//	"poolLength":"POOL_LENGTH_25_METER"
+//}
+
 @Component
 public class JsonToIndoorSwimConverter implements EntityConverter<JsonNode, IndoorSwim>{
 
@@ -29,6 +42,8 @@ public class JsonToIndoorSwimConverter implements EntityConverter<JsonNode, Indo
 	ISessionRepository sessionRepositor;
 	@Autowired
 	IUserRepository userRepository;
+	@Autowired
+	ISessionRepository sessionRepository;
 		
 	@Override
 	public IndoorSwim convert(JsonNode node) {
@@ -49,15 +64,21 @@ public class JsonToIndoorSwimConverter implements EntityConverter<JsonNode, Indo
 		String description = node.get("description").textValue();
 		Double duration = Double.parseDouble(node.get("duration").textValue());
 		Integer numberOfLaps = Integer.parseInt(node.get("numberOfLaps").textValue());
-		PoolLength poolLength = PoolLength.POOL_LENGTH_25_METER; //TODO: use correct value
 		SwimmingPlace swimmingPlace = this.swimminPlaceRepository.getOne(Long.parseLong((node.get("swimmingPlace").textValue())));
 		SwimTrainingPattern pattern = this.patternRepository.getOne(Long.parseLong((node.get("pattern").textValue())));
 		
-		Session session = this.sessionRepositor.save(Session.builder().build());
-		
 		List<User> users = new ArrayList<>();
+		JsonNode arrNode = node.get("users");
+		if(arrNode.isArray()) {
+			for (JsonNode jsonNode : arrNode) {
+				Long userId = Long.parseLong(jsonNode.toString().replaceAll("\"", ""));
+				users.add(this.userRepository.getOne(userId));
+			}
+		}
 		
-		User user = this.userRepository.save(User.builder().name("a").surname("b").build());
+		PoolLength poolLength = PoolLength.valueOf(node.get("poolLength").textValue());
+		Session session = this.sessionRepositor.getOne(Long.parseLong((node.get("session").textValue())));
+
 		
 		IndoorSwim indoorSwim = IndoorSwim.builder().date(date)
 				.description(description)

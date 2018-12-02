@@ -4,13 +4,13 @@ public enum PoolLength {
 	
     POOL_LENGTH_25_METER("POOL_LENGTH_25_METER"), POOL_LENGTH_50_METER("POOL_LENGTH_25_METER");
 
-	private PoolLength(String s) {
-		this.poolLength = s;
+	private PoolLength(String l) {
+		this.lenght = l;
 	}
 	
-	private final String poolLength;
+	private String lenght;
 	
-	public String getPoolLength() {
-		return this.poolLength;
+	public String getValue() {
+		return this.lenght;
 	}
 }
