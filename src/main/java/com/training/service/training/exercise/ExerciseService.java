@@ -3,6 +3,8 @@ package com.training.service.training.exercise;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +14,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.training.entities.training.exercise.Exercise;
 import com.training.entities.training.exercise.QExercise;
 import com.training.entities.training.session.Session;
+import com.training.entities.training.user.User;
 import com.training.repo.training.exercise.IExerciseRepRepository;
 import com.training.repo.training.exercise.IExerciseSetRepository;
 import com.training.repo.training.exercise.IExerciseTrainingRepository;
@@ -53,8 +56,16 @@ public class ExerciseService {
 	public Exercise saveExercise(Long sessionId, JsonNode jsonNode) {
 		Session session = this.sessionRepository.findById(sessionId).get();
 		LocalDate date = LocalDate.parse(jsonNode.get("date").textValue(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		LocalTime time = LocalTime.parse(jsonNode.get("date").textValue(), DateTimeFormatter.ofPattern("hh:mm"));
+		LocalTime time = LocalTime.parse(jsonNode.get("time").textValue(), DateTimeFormatter.ofPattern("HH:mm"));
 		Double duration = jsonNode.get("duration").asDouble();
+		
+		List<User> users = new ArrayList<>();
+		JsonNode arrayUser = jsonNode.get("users");
+		if(arrayUser.isArray()) {
+			for (JsonNode jsonNodeTmp : arrayUser) {
+				System.out.println(jsonNodeTmp.asLong());
+			}
+		}
 		
 		return null;
 	}
