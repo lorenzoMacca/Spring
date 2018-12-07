@@ -1,5 +1,6 @@
 package com.training.controller.training.swim;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.querydsl.core.types.Predicate;
 import com.training.core.training.swim.SwimMonatView;
 import com.training.entities.training.swim.IndoorSwim;
@@ -52,11 +53,10 @@ public class SwimController {
 
     @PostMapping("/indorSwim/")
     public ResponseEntity<IndoorSwim> saveIndorSwimActivity(
-            @RequestBody String indoorSwimJson
+            @RequestBody JsonNode indoorSwimJson
     ){
     	IndoorSwim indoorSwimFromDb = this.swimService.save(indoorSwimJson);
-    	HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>(indoorSwimFromDb, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(indoorSwimFromDb, HttpHeaders.EMPTY, HttpStatus.CREATED);
     }
     
     @GetMapping("/swims/month_view")

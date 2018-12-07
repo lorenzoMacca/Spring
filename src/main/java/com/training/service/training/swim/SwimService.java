@@ -74,17 +74,9 @@ public class SwimService {
 		
 	}
 
-    public IndoorSwim save(String json) {
-    	ObjectMapper mapper = new ObjectMapper();
-    	try {
-			JsonNode jsonNode = mapper.readTree(json);
-			IndoorSwim indoorSwim = this.jsonToIndoorSwimConverter.convert(jsonNode);
-			return this.swimTrainingRepository.save(indoorSwim);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return null;
+    public IndoorSwim save(JsonNode json) {
+		IndoorSwim indoorSwim = this.jsonToIndoorSwimConverter.convert(json);
+		return this.swimTrainingRepository.save(indoorSwim);
     }
 
 
