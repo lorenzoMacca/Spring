@@ -1,18 +1,16 @@
 package com.training.service.training.swim;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.querydsl.core.types.Predicate;
 import com.training.core.training.swim.SwimMonatView;
 import com.training.entities.common.EntityConverter;
+import com.training.entities.training.session.Session;
 import com.training.entities.training.swim.IndoorSwim;
+import com.training.repo.training.session.ISessionRepository;
 import com.training.repo.training.swim.ISwimTrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +22,9 @@ public class SwimService {
 
     @Autowired
     ISwimminPlaceService swimminPlaceService;
+    
+    @Autowired
+    ISessionRepository sessionRepository;
     
     @Autowired
     EntityConverter<JsonNode, IndoorSwim> jsonToIndoorSwimConverter;
@@ -74,8 +75,12 @@ public class SwimService {
 		
 	}
 
-    public IndoorSwim save(JsonNode json) {
+    public IndoorSwim save(Long sessionId, JsonNode json) {
 		IndoorSwim indoorSwim = this.jsonToIndoorSwimConverter.convert(json);
+		if(sessionId != indoorSwim.getSession().getId()) {
+			Session s = this.sessionRepository.getOne(sessionId);
+			indoorSwim.setSession(s);
+		}
 		return this.swimTrainingRepository.save(indoorSwim);
     }
 

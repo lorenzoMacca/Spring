@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.training.core.training.swim.PoolLength;
 import com.training.entities.common.EntityConverter;
+import com.training.entities.common.UtilsConverter;
 import com.training.entities.training.session.Session;
 import com.training.entities.training.user.User;
 import com.training.repo.training.session.ISessionRepository;
@@ -44,6 +45,8 @@ public class JsonToIndoorSwimConverter implements EntityConverter<JsonNode, Indo
 	IUserRepository userRepository;
 	@Autowired
 	ISessionRepository sessionRepository;
+	@Autowired
+	UtilsConverter utilsConverter;
 		
 	@Override
 	public IndoorSwim convert(JsonNode node) {
@@ -67,14 +70,7 @@ public class JsonToIndoorSwimConverter implements EntityConverter<JsonNode, Indo
 		SwimmingPlace swimmingPlace = this.swimminPlaceRepository.getOne(Long.parseLong((node.get("swimmingPlace").textValue())));
 		SwimTrainingPattern pattern = this.patternRepository.getOne(Long.parseLong((node.get("pattern").textValue())));
 		
-		List<User> users = new ArrayList<>();
-		JsonNode arrNode = node.get("users");
-		if(arrNode.isArray()) {
-			for (JsonNode jsonNode : arrNode) {
-				Long userId = Long.parseLong(jsonNode.toString().replaceAll("\"", ""));
-				users.add(this.userRepository.getOne(userId));
-			}
-		}
+		List<User> users = this.utilsConverter.extractUsers(node, this.userRepository);
 		
 		PoolLength poolLength = PoolLength.valueOf(node.get("poolLength").textValue());
 		Session session = this.sessionRepositor.getOne(Long.parseLong((node.get("session").textValue())));
