@@ -9,10 +9,15 @@ import org.springframework.stereotype.Service;
 public class SwimminPlaceService implements ISwimminPlaceService {
 
     @Autowired
-    ISwimmingPlaceRepository swimmingPoolRepository;
+    private ISwimmingPlaceRepository swimmingPoolRepository;
 
     @Override
     public SwimmingPlace findById(Long id) {
         return this.swimmingPoolRepository.findById(id).get();
     }
+
+	@Override
+	public Iterable<SwimmingPlace> getAll() {
+		return this.swimmingPoolRepository.findAll();
+	}
 }

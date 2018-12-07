@@ -6,7 +6,9 @@ import com.training.core.training.swim.SwimMonatView;
 import com.training.entities.common.EntityConverter;
 import com.training.entities.training.session.Session;
 import com.training.entities.training.swim.IndoorSwim;
+import com.training.entities.training.swim.SwimTrainingPattern;
 import com.training.repo.training.session.ISessionRepository;
+import com.training.repo.training.swim.ISwimTRainingPatternRepository;
 import com.training.repo.training.swim.ISwimTrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -18,16 +20,19 @@ import java.util.List;
 public class SwimService {
 
     @Autowired
-    ISwimTrainingRepository swimTrainingRepository;
+    private ISwimTrainingRepository swimTrainingRepository;
 
     @Autowired
-    ISwimminPlaceService swimminPlaceService;
+    private ISwimminPlaceService swimminPlaceService;
     
     @Autowired
-    ISessionRepository sessionRepository;
+    private ISessionRepository sessionRepository;
     
     @Autowired
-    EntityConverter<JsonNode, IndoorSwim> jsonToIndoorSwimConverter;
+    private ISwimTRainingPatternRepository patternRepository;
+    
+    @Autowired
+    private EntityConverter<JsonNode, IndoorSwim> jsonToIndoorSwimConverter;
     
     public Iterable<IndoorSwim> getAllIndorSwimActivitiesWithPaging(int page, int size) {
         return this.swimTrainingRepository.findAll(PageRequest.of(page, size));
@@ -82,6 +87,10 @@ public class SwimService {
 			indoorSwim.setSession(s);
 		}
 		return this.swimTrainingRepository.save(indoorSwim);
+    }
+    
+    public Iterable<SwimTrainingPattern> getAllSwimTrainingPattern(){
+    	return this.patternRepository.findAll();
     }
 
 

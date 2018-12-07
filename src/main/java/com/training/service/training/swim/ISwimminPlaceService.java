@@ -5,4 +5,6 @@ import com.training.entities.training.swim.SwimmingPlace;
 public interface ISwimminPlaceService {
 
     SwimmingPlace findById(Long id);
+    
+    Iterable<SwimmingPlace> getAll();
 }

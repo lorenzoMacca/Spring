@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.querydsl.core.types.Predicate;
 import com.training.core.training.swim.SwimMonatView;
 import com.training.entities.training.swim.IndoorSwim;
+import com.training.entities.training.swim.SwimTrainingPattern;
+import com.training.entities.training.swim.SwimmingPlace;
 import com.training.service.training.swim.ISwimminPlaceService;
 import com.training.service.training.swim.SwimService;
 import java.util.Collections;
@@ -66,11 +68,21 @@ public class SwimController {
     }
     
     @GetMapping("/swims/{page}/{size}")
-    Iterable<IndoorSwim> getAllSwimsWithPaging(
+    public Iterable<IndoorSwim> getAllSwimsWithPaging(
     		@PathVariable("size") int size,
     		@PathVariable("page") int page
     		){
     	return this.swimService.getAllIndorSwimActivitiesWithPaging(page, size);
+    }
+    
+    @GetMapping("/swimming-places")
+    public Iterable<SwimmingPlace> getAllSwimPlaces(){
+    	return this.swimminPoolService.getAll();
+    }
+    
+    @GetMapping("/swim-training-pattern")
+    public Iterable<SwimTrainingPattern> getAllSwimTrainingPattern(){
+    	return this.swimService.getAllSwimTrainingPattern();
     }
 
 }
