@@ -313,5 +313,33 @@ public class DBPopulator implements CommandLineRunner {
                 .pattern(p300p200)
                 .session(s15)
                 .build());
+        
+        Session s16 = Session.builder().build();
+        this.sessionRepository.save(s16);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2018, 12, 10))
+                .time(LocalTime.of(18, 45))
+                .swimmingPlace(hallenbadMitte)
+                .numberOfLaps(64)
+                .duration(47.0)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p300p200)
+                .session(s16)
+                .build());
+        
+        Session s17 = Session.builder().build();
+        this.sessionRepository.save(s17);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2018, 12, 12))
+                .time(LocalTime.of(18, 45))
+                .swimmingPlace(hallenbadHiltrup)
+                .numberOfLaps(64)
+                .duration(46.0)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p300p200)
+                .session(s17)
+                .build());
     }
 }
