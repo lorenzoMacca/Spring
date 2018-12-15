@@ -6,10 +6,14 @@ import com.training.core.training.swim.SwimMonatView;
 import com.training.entities.common.EntityConverter;
 import com.training.entities.training.session.Session;
 import com.training.entities.training.swim.IndoorSwim;
+import com.training.entities.training.swim.QIndoorSwim;
 import com.training.entities.training.swim.SwimTrainingPattern;
+import com.training.entities.training.user.User;
 import com.training.repo.training.session.ISessionRepository;
 import com.training.repo.training.swim.ISwimTRainingPatternRepository;
 import com.training.repo.training.swim.ISwimTrainingRepository;
+import com.training.repo.user.IUserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -42,8 +46,16 @@ public class SwimService {
         return this.swimTrainingRepository.findAll();
     }
 
-    public Iterable<IndoorSwim> getAllIndorSwimActivities(Predicate predicate){
-        return this.swimTrainingRepository.findAll(predicate);
+    public Iterable<IndoorSwim> getAllIndorSwimActivities(Long userId){
+    	List<IndoorSwim> indorSwims = new ArrayList<>();
+    	for (IndoorSwim indoorSwim : this.swimTrainingRepository.findAll()) {
+			for (User u : indoorSwim.getUsers()) {
+				if(u.getId().intValue() == userId) {
+					indorSwims.add(indoorSwim);
+				}
+			}
+		};
+    	return indorSwims;
     }
 
     public Boolean delete(Long indoorSwimId) {

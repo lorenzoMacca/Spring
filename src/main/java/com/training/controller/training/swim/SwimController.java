@@ -39,11 +39,9 @@ public class SwimController {
         return res;
     }
 
-    @GetMapping("/training/swim/activities_by_user_id")
-    public Iterable<IndoorSwim> getAllSwimActivitiesByUserId(
-            @QuerydslPredicate(root = IndoorSwim.class) Predicate predicate
-            ){
-        return this.swimService.getAllIndorSwimActivities(predicate);
+    @GetMapping("/users/{userId}/indorSwims")
+    public Iterable<IndoorSwim> getAllSwimActivitiesByUserId(@PathVariable(value="userId") Long userId){
+        return this.swimService.getAllIndorSwimActivities(userId);
     }
 
     @DeleteMapping("/training/swim/activity/delete")
