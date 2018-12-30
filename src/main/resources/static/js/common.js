@@ -25,7 +25,7 @@ function createAndFillTable(parentId, columns, data){
 	});
 	var htmlDate = "";
 	for (var i = 0; i < data.length; i++) {
-		htmlDate +="<tr>";
+		htmlDate +="<tr class='myTrainingTrClickable' >";
 		for (var j = 0; j < data[i].length; j++) {
 			htmlDate += "<td>"+ data[i][j] +"</td>";
 		}
@@ -43,6 +43,10 @@ function createAndFillTable(parentId, columns, data){
 	html +="</tbody>"
 		  +"</table>"
 	$(parentId).html(html);
+	
+	$('.myTrainingTrClickable').unbind('click').click(function() {
+		$('#myTrainingModalShowIndorSwimInfo').modal();
+	});
 }
 
 function createAndFillTabs(parentId, items){

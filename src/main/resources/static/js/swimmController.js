@@ -2,6 +2,7 @@ var INDOR_SWIM_GET_ALL = '/swims';
 var INDOR_SWIM_GET_ALL_MONTH_VIEW = '/swims/month_view';
 
 var POOL_LENGTH_25_METER = "POOL_LENGTH_25_METER";
+var POOL_LENGTH_31_METER = "POOL_LENGTH_31_METER";
 var POOL_LENGTH_50_METER = "POOL_LENGTH_50_METER";
 
 function addTabButtonFunktionalities(){
@@ -20,20 +21,20 @@ function addTabButtonFunktionalities(){
 function updateViewGetAllSwimMonthViewCB(data, dataForCallback){
 	console.log("[WHERE] - updateViewGetAllSwimMonthViewCB");
 	console.log(JSON.stringify(data));
-	var columns = ['Date', 'Distance (m)'];
-	var neededData = new Array(data.length);
-	var dataForChart = new Array(data.length);
+	let columns = ['Date', 'Distance (m)'];
+	let neededData = new Array(data.length);
+	let dataForChart = new Array(data.length);
 	for (var i = 0; i < data.length; i++) {
-		var yearMonth = data[i].year + "-" + data[i].month;
-		var distance = data[i].totalDistance;
-		var tmp = [yearMonth, distance];
+		let yearMonth = data[i].year + "-" + data[i].month;
+		let distance = data[i].totalDistance;
+		let tmp = [yearMonth, distance];
 		neededData[i]=tmp;
 		dataForChart[i] = distance;
 		
 	}
 	createAndFillTable(activityTable, columns, neededData);
-	var minY = Math.min(dataForChart);
-	var maxY = Math.max(dataForChart);
+	let minY = Math.min(dataForChart);
+	let maxY = Math.max(dataForChart);
 	minY -= 100;
 	maxY += 100;
 	dataForChart.unshift('Distance');
@@ -45,21 +46,25 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 	
 	console.log("[WHERE] - updateViewGetAllSwimCB");
 	console.log(JSON.stringify(data));
-	var columns = ['Date', 'Distance (m)', 'Location'];
-	var neededData = new Array(data.length);
+	let columns = ['Date', 'Distance (m)', 'Duration (min)', 'min/100 m', 'Location'];
+	let neededData = new Array(data.length);
 	var dataForChart = new Array(data.length);
 	//dataForChart[0] = "Distance (m)";
-	for (var i = 0; i < data.length; i++) {
-		var tmpDate = "" + data[i].date + " " + data[i].time.substring(0,5);
-		var poolLength = 0;
+	for (let i = 0; i < data.length; i++) {
+		let tmpDate = "" + data[i].date + " " + data[i].time.substring(0,5);
+		let poolLength = 0;
 		if(data[i].poolLength == POOL_LENGTH_25_METER){
 			poolLength = 25;
 		}else if(data[i].poolLength == POOL_LENGTH_50_METER){
 			poolLength = 50;
+		}else if(data[i].poolLength ==POOL_LENGTH_31_METER){
+			poolLength = 31;
 		}
-		var tmpDistance = parseInt(data[i].numberOfLaps) * poolLength;
+		let tmpDistance = parseInt(data[i].numberOfLaps) * poolLength;
+		let duration = data[i].duration;
+		let minEvery100Meter = 100.0 * (duration/tmpDistance);
 		dataForChart[i] = tmpDistance;
-		var tmp = [tmpDate, tmpDistance, data[i].swimmingPlace.name];
+		let tmp = [tmpDate, tmpDistance, duration, minEvery100Meter.toFixed(2), data[i].swimmingPlace.name];
 		neededData[i]=tmp;
 	}
 	console.log(JSON.stringify(neededData));

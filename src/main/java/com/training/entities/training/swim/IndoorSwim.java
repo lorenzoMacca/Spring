@@ -11,7 +11,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -72,9 +71,11 @@ public class IndoorSwim implements Comparable<IndoorSwim>{
     
     public Float getSwimmingPlaceDistance() {
     	if(this.poolLength == PoolLength.POOL_LENGTH_25_METER) {
-    		return new Float(25);
+    		return Float.valueOf(25);
     	}else if(this.poolLength == PoolLength.POOL_LENGTH_50_METER) {
-    		return new Float(50);
+    		return Float.valueOf(50);
+    	}else if(this.poolLength == PoolLength.POOL_LENGTH_31_METER) {
+    		return Float.valueOf(31);
     	}
     	return null;
     }

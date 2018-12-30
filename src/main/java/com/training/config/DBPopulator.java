@@ -92,7 +92,8 @@ public class DBPopulator implements CommandLineRunner {
         SwimmingPlace kielHoern = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hörnbad").address("Anni-Wadle-Weg 1, 24143 Kiel").build());
         SwimmingPlace hallenbadMitte = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Mitte").address("Badestr. 8 48149 Münster").build());
         SwimmingPlace kinderhause = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Kinderhause").address("Badestr. 8 48149 Münster").build());
-        SwimmingPlace MuellerschesVolksbad = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Kinderhause").address("Badestr. 8 48149 Münster").build());
+        SwimmingPlace MuellerschesVolksbad = swimmingPlaceRepository.save(SwimmingPlace.builder().name("MuellerschesVolksbad").address("Badestr. 8 48149 Münster").build());
+        SwimmingPlace piscinaScorpion = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Scorpion").address("Via Repaci, 40, 87036 Roges CS, Italien").build());
 
         
         Session s1 = Session.builder().build();
@@ -393,12 +394,40 @@ public class DBPopulator implements CommandLineRunner {
                 .date(LocalDate.of(2018, 12, 23))
                 .time(LocalTime.of(9, 00))
                 .swimmingPlace(MuellerschesVolksbad)
-                .numberOfLaps(60)
+                .numberOfLaps(48)
                 .duration(42.00)
-                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .poolLength(PoolLength.POOL_LENGTH_31_METER)
                 .users(buddies)
                 .pattern(p300p200)
                 .session(s21)
+                .build());
+        
+        Session s22 = Session.builder().build();
+        this.sessionRepository.save(s22);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2018, 12, 27))
+                .time(LocalTime.of(11, 33))
+                .swimmingPlace(piscinaScorpion)
+                .numberOfLaps(60)
+                .duration(42.29)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p300p200)
+                .session(s22)
+                .build());
+        
+        Session s23 = Session.builder().build();
+        this.sessionRepository.save(s23);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2018, 12, 30))
+                .time(LocalTime.of(13, 18))
+                .swimmingPlace(kielHoern)
+                .numberOfLaps(36)
+                .duration(51.00)
+                .poolLength(PoolLength.POOL_LENGTH_50_METER)
+                .users(buddies)
+                .pattern(p300p200)
+                .session(s23)
                 .build());
     }
 }
