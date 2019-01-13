@@ -423,11 +423,96 @@ public class DBPopulator implements CommandLineRunner {
                 .time(LocalTime.of(13, 18))
                 .swimmingPlace(kielHoern)
                 .numberOfLaps(36)
-                .duration(51.00)
+                .duration(51.0)
                 .poolLength(PoolLength.POOL_LENGTH_50_METER)
                 .users(buddies)
                 .pattern(p300p200)
                 .session(s23)
                 .build());
+        
+        Session s24 = Session.builder().build();
+        this.sessionRepository.save(s24);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2019, 1, 2))
+                .time(LocalTime.of(17, 39))
+                .swimmingPlace(hallenbadMitte)
+                .numberOfLaps(60)
+                .duration(41.53)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p300p200)
+                .session(s24)
+                .build());
+        
+        Session s25 = Session.builder().build();
+        this.sessionRepository.save(s25);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2019, 1, 4))
+                .time(LocalTime.of(16, 26))
+                .swimmingPlace(hallenbadMitte)
+                .numberOfLaps(64)
+                .duration(40.08)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(lorenzoUser)
+                .pattern(p300p200)
+                .session(s25)
+                .build());
+        
+        Session s26 = Session.builder().build();
+        this.sessionRepository.save(s26);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2019, 1, 5))
+                .time(LocalTime.of(14, 39))
+                .swimmingPlace(hallenbadMitte)
+                .numberOfLaps(32)
+                .duration(21.0)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p300p200)
+                .session(s26)
+                .build());
+        
+        Session s27 = Session.builder().build();
+        this.sessionRepository.save(s27);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2019, 1, 7))
+                .time(LocalTime.of(18, 05))
+                .swimmingPlace(hallenbadMitte)
+                .numberOfLaps(68)
+                .duration(45.10)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(lorenzoUser)
+                .pattern(p300p200)
+                .session(s27)
+                .build());
+        
+        Session s28 = Session.builder().build();
+        this.sessionRepository.save(s28);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2019, 1, 9))
+                .time(LocalTime.of(18, 57))
+                .swimmingPlace(hallenbadMitte)
+                .numberOfLaps(60)
+                .duration(39.25)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p300p200)
+                .session(s28)
+                .build());
+        
+        Session s29 = Session.builder().build();
+        this.sessionRepository.save(s29);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(LocalDate.of(2019, 1, 12))
+                .time(LocalTime.of(12, 01))
+                .swimmingPlace(hallenbadOst)
+                .numberOfLaps(68)
+                .duration(46.30)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(buddies)
+                .pattern(p300p200)
+                .session(s29)
+                .build());
+        
     }
 }

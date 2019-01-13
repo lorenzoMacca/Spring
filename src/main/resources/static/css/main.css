@@ -5,3 +5,39 @@ h1{
 h2{
     color:#FF0000;
 }
+
+.containerMargin{
+	margin-top: 30px;
+}
+
+.leftContainer {
+	width: 15%;
+	float: left;
+}
+
+.rightContainer{
+	width: 85%;
+	float: right;
+}
+
+.chartSpace{
+	margin-top : 20px;
+	margin-bottom: 20px;
+}
+
+.activityTabs{
+	padding-left: 10px; 
+}
+
+.progressMargin{
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.selectActivityImg {
+	width: 100px; 
+	height: 100px; 
+	display: block;  
+	margin-left: auto; 
+	margin-right: auto
+}
