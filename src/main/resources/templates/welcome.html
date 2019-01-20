@@ -7,6 +7,7 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{/css/main.css}" />
 <link rel="stylesheet" th:href="@{js/c3/c3.css}">
+<link rel="stylesheet" th:href="@{js/datatimepicker/jquery.datetimepicker.min.css}">
 
 </head>
 <body>
@@ -62,7 +63,7 @@
 		<div id="activityContainer">
 			<div id="leftContainerId" class="leftContainer">
 				<button type="button" class="btn btn-success btn-block"
-					data-toggle="modal" data-target="#selectActivityModal">New
+					data-toggle="modal" onclick="initModalView()"  data-target="#selectActivityModal">New
 					Activity</button>
 				<button type="button" class="btn btn-success btn-block">Challenges</button>
 				<button type="button" class="btn btn-success btn-block">Share</button>
@@ -113,7 +114,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="progress progressMargin">
-							<div class="progress-bar progress-bar-striped" role="progressbar"
+							<div id="progressBarActivity" class="progress-bar progress-bar-striped" role="progressbar"
 								style="width: 10%" aria-valuenow="10" aria-valuemin="0"
 								aria-valuemax="100"></div>
 						</div>
@@ -163,11 +164,27 @@
 								</tr>
 							</table>
 						</div>
+						<div id="generalInformationActivity">
+						<form>
+						
+						  <div class="form-group">
+						    <label for="datetimepicker">Date</label>
+						    <input type="text" class="form-control" id="datetimepicker" placeholder="Enter the date">
+						    <small id="inputDateActivityHelp" class="form-text text-muted">Enter the date when you did the activity.</small>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputDurationActivity">Duration</label>
+						    <input type="text" class="form-control" id="inputDurationActivity" placeholder="Enter the duration">
+						    <small id="inputDurationActivityHelp" class="form-text text-muted">Enter the duration in minutes.</small>
+						  </div>
+
+						</form>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Next</button>
+						<button type="button" id="newActivityNextButton" class="btn btn-primary disabled">Next</button>
 					</div>
 				</div>
 			</div>
@@ -186,7 +203,13 @@
 	<script th:src="@{js/common.js}"></script>
 	<script th:src="@{js/swimmController.js}"></script>
 	<script th:src="@{js/activityController.js}"></script>
+	<script th:src="@{js/datatimepicker/jquery.datetimepicker.full.min.js}"></script>
 	
+	<script type="text/javascript">
+	jQuery('#datetimepicker').datetimepicker({
+		format:'Y-m-d H:i'
+	});
+	</script>
 
 
 </body>
