@@ -84,8 +84,8 @@ function addTabs(){
 $("#swimSectionMenuBtnId").click(function(){
 	getAll(INDOR_SWIM_GET_ALL, updateViewGetAllSwimCB, null);
 	addTabs();
-	$("#welcomeMessageContainerId").fadeOut();
-	$(activityContainer).fadeIn("slow");
+	$("#welcomeMessageContainerId").hide();
+	$(activityContainer).show();
 });
 
 

@@ -1,4 +1,4 @@
-$(activityContainer).fadeOut();
+$(activityContainer).hide();
 
 
 function executeAjaxCall(url, map, callback, dataForCallback){
