@@ -59,7 +59,7 @@ public class IndoorSwim implements Comparable<IndoorSwim>{
     @JsonManagedReference
     private List<User> users;
 
-    @NotNull
+
     @ManyToOne
     @JsonManagedReference
     private SwimTrainingPattern pattern;

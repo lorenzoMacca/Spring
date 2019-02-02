@@ -185,7 +185,15 @@
 							</form>
 						</div>
 						<div id="placeInformationActivity">
-						place information 
+							<div class="form-group">
+								<label for="selectSwimmingPlaceActivity">Swimming Pool</label>
+								<select id="selectSwimmingPlaceActivity">
+									<option th:each="sp : ${swimPLaces}" th:text="${sp.name}" th:value="${sp.id}"></option>
+								</select>
+								<small id="selectSwimmingPlaceActivityHelp" class="form-text text-muted">
+									Select the swimming pool where you trained.
+								</small>
+							</div>
 						</div>
 					</div>
 					<div class="modal-footer">

@@ -458,19 +458,7 @@ public class DBPopulator implements CommandLineRunner {
                 .session(s25)
                 .build());
         
-        Session s26 = Session.builder().build();
-        this.sessionRepository.save(s26);
-        swimTrainingRepository.save(IndoorSwim.builder()
-                .date(LocalDate.of(2019, 1, 5))
-                .time(LocalTime.of(14, 39))
-                .swimmingPlace(hallenbadMitte)
-                .numberOfLaps(32)
-                .duration(21.0)
-                .poolLength(PoolLength.POOL_LENGTH_25_METER)
-                .users(buddies)
-                .pattern(p300p200)
-                .session(s26)
-                .build());
+        this.insertSwim(LocalDate.of(2019, 1, 5), LocalTime.of(14, 39), 21.0, 32, buddies, hallenbadOst);
         
         Session s27 = Session.builder().build();
         this.sessionRepository.save(s27);
@@ -542,5 +530,35 @@ public class DBPopulator implements CommandLineRunner {
                 .session(s31)
                 .build());
         
+
+        this.insertSwim(LocalDate.of(2019, 1, 24), LocalTime.of(18, 05), 33.51, 48, buddies, hallenbadHiltrup);
+        
+        this.insertSwim(LocalDate.of(2019, 1, 27), LocalTime.of(11, 07), 29.49, 48, buddies, hallenbadOst);
+        
+        this.insertSwim(LocalDate.of(2019, 1, 29), LocalTime.of(18, 38), 39.35, 60, buddies, hallenbadHiltrup);
+        
+        this.insertSwim(LocalDate.of(2019, 1, 31), LocalTime.of(17, 38), 39.32, 60, buddies, hallenbadHiltrup);
+
+
+        
+        
+        
     }
+    
+    private void insertSwim(LocalDate date, LocalTime time, Double duration, Integer laps, List<User> users, SwimmingPlace swimmingPlace) {
+    	Session session = Session.builder().build();
+        this.sessionRepository.save(session);
+        swimTrainingRepository.save(IndoorSwim.builder()
+                .date(date)
+                .time(time)
+                .swimmingPlace(swimmingPlace)
+                .numberOfLaps(laps)
+                .duration(duration)
+                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .users(users)
+                .session(session)
+                .build());
+        
+    }
+    
 }

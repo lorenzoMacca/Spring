@@ -84,6 +84,8 @@ $("#newActivityNextButton").click(function(){
 		selectActivityAndSwim(context == SET_TIME_INFO && selectedItem == SWIM_ID);
 	}else if(context == SET_TIME_INFO && selectedItem == SWIM_ID){
 		setTimeInfoAndSwim();
+	}else if(context == SET_PLACE && selectedItem == SWIM_ID){
+		setPlaceSwim();
 	}
 	
 });
