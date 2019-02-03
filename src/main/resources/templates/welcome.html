@@ -9,6 +9,10 @@
 <link rel="stylesheet" th:href="@{js/c3/c3.css}">
 <link rel="stylesheet"
 	th:href="@{js/datatimepicker/jquery.datetimepicker.min.css}">
+	
+<link rel="stylesheet" th:href="@{js/openlayers/ol.css}" type="text/css">
+
+<script th:src="@{js/openlayers/ol.js}"></script>
 
 </head>
 <body>
@@ -194,6 +198,10 @@
 									Select the swimming pool where you trained.
 								</small>
 							</div>
+							<div id="map" class="map" style="height: 300px; width: 100%;"></div>
+						</div>
+						<div id="detailsSwimActivity">
+						some details
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -218,7 +226,7 @@
 	<script th:src="@{js/validatejs/validate.min.js}"></script>
 	<script th:src="@{js/common.js}"></script>
 	<script th:src="@{js/swimmController.js}"></script>
-	<script th:src="@{js/activityController.js}"></script>
+	
 	<script th:src="@{js/datatimepicker/jquery.datetimepicker.full.min.js}"></script>
 
 	<script type="text/javascript">
@@ -226,6 +234,10 @@
 			format : 'Y-m-d H:i'
 		});
 	</script>
+	
+
+	<script th:src="@{js/map.js}"></script>
+	<script th:src="@{js/activityController.js}"></script>
 
 
 </body>

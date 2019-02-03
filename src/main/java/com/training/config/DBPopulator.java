@@ -87,13 +87,13 @@ public class DBPopulator implements CommandLineRunner {
         swimTRainingPatternRepository.save(p300p200);
         swimTRainingPatternRepository.save(p400p300);
         
-        SwimmingPlace hallenbadHiltrup = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Hiltrup").address("Westfalenstraße 201 48165 Münster").build());
-        SwimmingPlace hallenbadOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Ost").address("Mauritz-Lindenweg 101 48145 Münster").build());
-        SwimmingPlace kielHoern = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hörnbad").address("Anni-Wadle-Weg 1, 24143 Kiel").build());
-        SwimmingPlace hallenbadMitte = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Mitte").address("Badestr. 8 48149 Münster").build());
-        SwimmingPlace kinderhause = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Kinderhause").address("Badestr. 8 48149 Münster").build());
-        SwimmingPlace MuellerschesVolksbad = swimmingPlaceRepository.save(SwimmingPlace.builder().name("MuellerschesVolksbad").address("Badestr. 8 48149 Münster").build());
-        SwimmingPlace piscinaScorpion = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Scorpion").address("Via Repaci, 40, 87036 Roges CS, Italien").build());
+        SwimmingPlace hallenbadHiltrup = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Hiltrup").address("Westfalenstraße 201 48165 Münster").longitude(51.900642).latitude(7.6379748).build());
+        SwimmingPlace hallenbadOst = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Ost").address("Mauritz-Lindenweg 101 48145 Münster").longitude(51.9484584).latitude(7.5813466).build());
+        SwimmingPlace kielHoern = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hörnbad").address("Anni-Wadle-Weg 1, 24143 Kiel").longitude(51.9484584).latitude(7.5813466).build());
+        SwimmingPlace hallenbadMitte = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Mitte").address("Badestr. 8 48149 Münster").longitude(51.9484584).latitude(7.5813466).build());
+        SwimmingPlace kinderhause = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Hallenbad Kinderhause").address("Badestr. 8 48149 Münster").longitude(51.9484584).latitude(7.5813466).build());
+        SwimmingPlace MuellerschesVolksbad = swimmingPlaceRepository.save(SwimmingPlace.builder().name("MuellerschesVolksbad").address("Badestr. 8 48149 Münster").longitude(51.9484584).latitude(7.5813466).build());
+        SwimmingPlace piscinaScorpion = swimmingPlaceRepository.save(SwimmingPlace.builder().name("Scorpion").address("Via Repaci, 40, 87036 Roges CS, Italien").longitude(51.9484584).latitude(7.5813466).build());
 
         
         Session s1 = Session.builder().build();
@@ -515,21 +515,9 @@ public class DBPopulator implements CommandLineRunner {
                 .pattern(p300p200)
                 .session(s30)
                 .build());
+
         
-        Session s31 = Session.builder().build();
-        this.sessionRepository.save(s31);
-        swimTrainingRepository.save(IndoorSwim.builder()
-                .date(LocalDate.of(2019, 1, 17))
-                .time(LocalTime.of(17, 01))
-                .swimmingPlace(hallenbadHiltrup)
-                .numberOfLaps(64)
-                .duration(43.35)
-                .poolLength(PoolLength.POOL_LENGTH_25_METER)
-                .users(buddies)
-                .pattern(p300p200)
-                .session(s31)
-                .build());
-        
+        this.insertSwim(LocalDate.of(2019, 1, 17), LocalTime.of(17, 01), 43.35, 64, buddies, hallenbadHiltrup);
 
         this.insertSwim(LocalDate.of(2019, 1, 24), LocalTime.of(18, 05), 33.51, 48, buddies, hallenbadHiltrup);
         
@@ -538,6 +526,8 @@ public class DBPopulator implements CommandLineRunner {
         this.insertSwim(LocalDate.of(2019, 1, 29), LocalTime.of(18, 38), 39.35, 60, buddies, hallenbadHiltrup);
         
         this.insertSwim(LocalDate.of(2019, 1, 31), LocalTime.of(17, 38), 39.32, 60, buddies, hallenbadHiltrup);
+        
+        this.insertSwim(LocalDate.of(2019, 2, 3), LocalTime.of(10, 49),  38.45, 64, lorenzoUser, hallenbadOst);
 
 
         

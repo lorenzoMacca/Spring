@@ -27,6 +27,13 @@ public class SwimmingPlace implements ISwimmingPlace {
 
     @NotNull
     String address;
+    
+    @NotNull
+    Double longitude;
+    
+    @NotNull
+    Double latitude;
+    
 
     String webpage;
 
