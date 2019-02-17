@@ -26,6 +26,8 @@ public class QSession extends EntityPathBase<Session> {
 
     public final ListPath<com.training.entities.training.swim.IndoorSwim, com.training.entities.training.swim.QIndoorSwim> indoorSwims = this.<com.training.entities.training.swim.IndoorSwim, com.training.entities.training.swim.QIndoorSwim>createList("indoorSwims", com.training.entities.training.swim.IndoorSwim.class, com.training.entities.training.swim.QIndoorSwim.class, PathInits.DIRECT2);
 
+    public final ListPath<com.training.entities.training.Run, com.training.entities.training.QRun> runs = this.<com.training.entities.training.Run, com.training.entities.training.QRun>createList("runs", com.training.entities.training.Run.class, com.training.entities.training.QRun.class, PathInits.DIRECT2);
+
     public QSession(String variable) {
         super(Session.class, forVariable(variable));
     }

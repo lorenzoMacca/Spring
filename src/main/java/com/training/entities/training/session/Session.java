@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.training.entities.training.Run;
 import com.training.entities.training.exercise.Exercise;
 import com.training.entities.training.swim.IndoorSwim;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,10 @@ public class Session {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="session")
     @JsonManagedReference
 	List<IndoorSwim> indoorSwims;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="session")
+    @JsonManagedReference
+	List<Run> runs;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="session")
 	@JsonManagedReference

@@ -190,7 +190,7 @@
 						</div>
 						<div id="placeInformationActivity">
 							<div class="form-group">
-								<label for="selectSwimmingPlaceActivity">Swimming Pool</label>
+								<label for="selectSwimmingPlaceActivity">Swimming pool</label>
 								<select id="selectSwimmingPlaceActivity">
 									<option th:each="sp : ${swimPLaces}" th:text="${sp.name}" th:value="${sp.id}"></option>
 								</select>
@@ -198,7 +198,18 @@
 									Select the swimming pool where you trained.
 								</small>
 							</div>
-							<div id="map" class="map" style="height: 300px; width: 100%;"></div>
+							<div class="form-group">
+								<label for="selectLongLane">Length of the lane</label>
+								<select id="selectLongLane">
+									<option th:value="${POOL_LENGTH_25_METER}">25 Meter</option>
+									<option th:value="${POOL_LENGTH_50_METER}">50 Meter</option>
+									<option th:value="${POOL_LENGTH_31_METER}">31 Meter</option>
+								</select>
+								<small id="selectSwimmingPlaceActivityHelp" class="form-text text-muted">
+									Select the length of the lane.
+								</small>
+							</div>
+<!-- 							<div id="map" class="map" style="height: 300px; width: 100%;"></div> -->
 						</div>
 						<div id="detailsSwimActivity">
 						some details

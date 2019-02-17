@@ -1,6 +1,7 @@
 package com.training.config;
 
 import com.training.core.training.swim.PoolLength;
+import com.training.entities.training.Run;
 import com.training.entities.training.exercise.Exercise;
 import com.training.entities.training.exercise.ExerciseRep;
 import com.training.entities.training.exercise.ExerciseSet;
@@ -14,6 +15,7 @@ import com.training.repo.training.exercise.IExerciseRepRepository;
 import com.training.repo.training.exercise.IExerciseSetRepository;
 import com.training.repo.training.exercise.IExerciseTrainingRepository;
 import com.training.repo.training.exercise.IExerciseTypeRepository;
+import com.training.repo.training.run.IRunRepository;
 import com.training.repo.training.session.ISessionRepository;
 import com.training.repo.training.swim.ISwimTRainingPatternRepository;
 import com.training.repo.training.swim.ISwimTrainingRepository;
@@ -50,6 +52,9 @@ public class DBPopulator implements CommandLineRunner {
     @Autowired
     IExerciseRepRepository repsRepository;
 
+    @Autowired
+    private IRunRepository runRepository;
+    
     @Override
     public void run(String... args) {
     	
@@ -444,35 +449,11 @@ public class DBPopulator implements CommandLineRunner {
                 .session(s24)
                 .build());
         
-        Session s25 = Session.builder().build();
-        this.sessionRepository.save(s25);
-        swimTrainingRepository.save(IndoorSwim.builder()
-                .date(LocalDate.of(2019, 1, 4))
-                .time(LocalTime.of(16, 26))
-                .swimmingPlace(hallenbadMitte)
-                .numberOfLaps(64)
-                .duration(40.08)
-                .poolLength(PoolLength.POOL_LENGTH_25_METER)
-                .users(lorenzoUser)
-                .pattern(p300p200)
-                .session(s25)
-                .build());
+        this.insertSwim(LocalDate.of(2019, 1, 4), LocalTime.of(10, 26), 40.08, 64, lorenzoUser, hallenbadMitte);
         
         this.insertSwim(LocalDate.of(2019, 1, 5), LocalTime.of(14, 39), 21.0, 32, buddies, hallenbadOst);
         
-        Session s27 = Session.builder().build();
-        this.sessionRepository.save(s27);
-        swimTrainingRepository.save(IndoorSwim.builder()
-                .date(LocalDate.of(2019, 1, 7))
-                .time(LocalTime.of(18, 05))
-                .swimmingPlace(hallenbadMitte)
-                .numberOfLaps(68)
-                .duration(45.10)
-                .poolLength(PoolLength.POOL_LENGTH_25_METER)
-                .users(lorenzoUser)
-                .pattern(p300p200)
-                .session(s27)
-                .build());
+        this.insertSwim(LocalDate.of(2019, 1, 7), LocalTime.of(18, 05), 45.10, 68, lorenzoUser, hallenbadMitte);
         
         this.insertSwim(LocalDate.of(2019, 1, 9), LocalTime.of(18, 57), 39.25, 60, buddies, hallenbadMitte);
         
@@ -490,19 +471,36 @@ public class DBPopulator implements CommandLineRunner {
         
         this.insertSwim(LocalDate.of(2019, 1, 31), LocalTime.of(17, 38), 39.32, 60, buddies, hallenbadHiltrup);
         
-        this.insertSwim(LocalDate.of(2019, 2, 3), LocalTime.of(10, 49),  38.45, 64, lorenzoUser, hallenbadOst);
+        this.insertSwim(LocalDate.of(2019, 2, 3), LocalTime.of(10, 49),  38.45, 64, buddies, hallenbadOst);
         
-        this.insertSwim(LocalDate.of(2019, 2, 5), LocalTime.of(18, 40),  35.20, 56, lorenzoUser, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 2, 5), LocalTime.of(18, 40),  35.20, 56, buddies, hallenbadHiltrup);
         
-        this.insertSwim(LocalDate.of(2019, 2, 7), LocalTime.of(17, 9),   41.03, 64, lorenzoUser, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 2, 7), LocalTime.of(17, 9),   41.03, 64, buddies, hallenbadHiltrup);
         
-        this.insertSwim(LocalDate.of(2019, 2, 9), LocalTime.of(8, 30),   32.46, 52, lorenzoUser, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 2, 9), LocalTime.of(8, 30),   32.46, 52, buddies, hallenbadHiltrup);
         
-        this.insertSwim(LocalDate.of(2019, 2, 12), LocalTime.of(18, 36),   42.25, 68, lorenzoUser, hallenbadOst);
+        this.insertSwim(LocalDate.of(2019, 2, 12), LocalTime.of(18, 36),   42.25, 68, buddies, hallenbadOst);
         
-        this.insertSwim(LocalDate.of(2019, 2, 14), LocalTime.of(18, 04),   41.45, 68, lorenzoUser, hallenbadHiltrup);
+        this.insertRun(LocalDate.of(2019, 2, 13), LocalTime.of(17, 27), 28.22, 5.19, lorenzoUser);
+        
+        this.insertSwim(LocalDate.of(2019, 2, 14), LocalTime.of(18, 04),   41.45, 68, buddies, hallenbadHiltrup);
+        
+        this.insertRun(LocalDate.of(2019, 2, 16), LocalTime.of(10, 46), 32.27, 5.30, buddies);
         
         
+    }
+    
+    private void insertRun(LocalDate date, LocalTime time, Double duration, Double dinstance, List<User> users) {
+    	Session session = Session.builder().build();
+        this.sessionRepository.save(session);
+        runRepository.save(Run.builder()
+        		.date(date)
+        		.time(time)
+        		.duration(duration)
+        		.distance(dinstance)
+        		.users(users)
+        		.session(session)
+        		.build());
     }
     
     private void insertSwim(LocalDate date, LocalTime time, Double duration, Integer laps, List<User> users, SwimmingPlace swimmingPlace) {

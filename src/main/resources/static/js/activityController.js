@@ -22,7 +22,7 @@ var activityObject = undefined;
 //	  "pattern":"2596",
 //	  "users": ["2593", "2593"],
 //	  "session":"2604",
-//	  "poolLength":"POOL_LENGTH_25_METER"
+//	X "poolLength":"POOL_LENGTH_25_METER"
 //}
 
 function setActivityAttribute(propertyName, attr){
@@ -80,23 +80,24 @@ function setTimeInfoAndSwim(){
 		$("#exampleModalLabel").text("Where did you do it?");
 		$("#placeInformationActivity").show();
 		//TODO: the following code are from openLayer and it's just a test. I have to understand how to import libs in js.
-		 new ol.Map({
-		        target: 'map',
-		        layers: [
-		          new ol.layer.Tile({
-		            source: new ol.source.OSM()
-		          })
-		        ],
-		        view: new ol.View({
-		          center: ol.proj.fromLonLat([7.6379748, 51.900642]),
-		          zoom: 17
-		        })
-		      });
+//		 new ol.Map({
+//		        target: 'map',
+//		        layers: [
+//		          new ol.layer.Tile({
+//		            source: new ol.source.OSM()
+//		          })
+//		        ],
+//		        view: new ol.View({
+//		          center: ol.proj.fromLonLat([7.6379748, 51.900642]),
+//		          zoom: 17
+//		        })
+//		      });
 	});
 }
 
 function setPlaceSwim(){
 	setActivityAttribute("swimmingPlace", $('#selectSwimmingPlaceActivity').val());
+	setActivityAttribute("poolLength", $('#selectLongLane').val());
 	console.log(JSON.stringify(activityObject));
 	context = SET_SWIM_INFO;
 	$( "#placeInformationActivity" ).fadeOut( function() {
