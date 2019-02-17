@@ -6,18 +6,20 @@ var SELECT_ACTIVITY = "1";
 var SET_TIME_INFO   = "2";
 var SET_PLACE       = "3";
 var SET_SWIM_INFO   = "4";
+var SET_USERS       = "5";
 var context = SELECT_ACTIVITY; 
 var backgroundColorSelectItem = "#4d4dff";
 var defaultColor = "white";
 
 var activityObject = undefined;
+var users=new Array();
 
 //{
 //	X "date":"2018-12-21",
 //	X "time":"17:40",
-//	  "description":"asd",
+//	X "description":"asd",
 //	X "duration":"75",
-//	  "numberOfLaps":"1000",
+//	X "numberOfLaps":"1000",
 //	X "swimmingPlace":"2600",
 //	  "pattern":"2596",
 //	  "users": ["2593", "2593"],
@@ -41,6 +43,8 @@ function initModalView(){
 	$('#selectActivityModalContent').show();
 	$('#generalInformationActivity').hide();
 	$('#placeInformationActivity').hide();
+	$('#detailsSwimActivity').hide();
+	$("#buddiesSwimActivity").hide();
 }
 
 $(".clickableImg").on( "mouseenter", function( event ) {
@@ -74,7 +78,6 @@ function setTimeInfoAndSwim(){
 	setActivityAttribute("date", dataTime[0]);
 	setActivityAttribute("time", dataTime[1]);
 	setActivityAttribute("duration", $("#inputDurationActivity").val());
-	console.log(JSON.stringify(activityObject));
 	context = SET_PLACE;
 	$( "#generalInformationActivity" ).fadeOut( function() {
 		$("#exampleModalLabel").text("Where did you do it?");
@@ -98,12 +101,28 @@ function setTimeInfoAndSwim(){
 function setPlaceSwim(){
 	setActivityAttribute("swimmingPlace", $('#selectSwimmingPlaceActivity').val());
 	setActivityAttribute("poolLength", $('#selectLongLane').val());
-	console.log(JSON.stringify(activityObject));
 	context = SET_SWIM_INFO;
 	$( "#placeInformationActivity" ).fadeOut( function() {
 		$("#exampleModalLabel").text("Enter details about your training");
 		$("#detailsSwimActivity").show();
 	});
+	
+}
+
+function setDetails(){
+	setActivityAttribute("numberOfLaps", $('#numberOfLapsSwimActivity').val());
+	setActivityAttribute("description", $('#descriptionSwimActivity').val());
+	context = SET_USERS;
+	$("#detailsSwimActivity" ).fadeOut( function() {
+		$("#exampleModalLabel").text("Select your buddies");
+		$("#buddiesSwimActivity").show();
+	});
+}
+
+function setUser(){
+	setActivityAttribute("users", users);
+	console.log(JSON.stringify(activityObject));
+	//SET THE CURRENT USER AND SAVE
 }
 
 $("#newActivityNextButton").click(function(){
@@ -113,6 +132,27 @@ $("#newActivityNextButton").click(function(){
 		setTimeInfoAndSwim();
 	}else if(context == SET_PLACE && selectedItem == SWIM_ID){
 		setPlaceSwim();
+	}else if(context == SET_SWIM_INFO && selectedItem == SWIM_ID){
+		setDetails();
+	}else if(context == SET_USERS && selectedItem == SWIM_ID){
+		setUser();
 	}
 	
+});
+
+function addUser(id){
+	let trovato=0;
+	for(let i=0; i<users.length; i++){
+		if(users[i] === id){
+			trovato=1;
+		}
+	}
+	if(trovato === 0){
+		users.push(id);
+	}
+}
+
+$(".addBuddyButton").click(function(){
+	let userId = $(this).attr('data-id');
+	addUser(userId);
 });

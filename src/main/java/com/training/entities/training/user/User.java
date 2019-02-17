@@ -29,6 +29,10 @@ public class User {
 
     @NotNull
     private String surname;
+    
+    private String description;
+    
+    private String picture;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     @JsonBackReference
@@ -41,5 +45,9 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     @JsonBackReference
     List<Exercise> exercises;
+    
+    public String getDisplayName() {
+    	return this.name;
+    }
 
 }

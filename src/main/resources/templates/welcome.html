@@ -212,7 +212,31 @@
 <!-- 							<div id="map" class="map" style="height: 300px; width: 100%;"></div> -->
 						</div>
 						<div id="detailsSwimActivity">
-						some details
+							<div class="form-group">
+								<label for="numberOfLapsSwimActivity">N° laps</label>
+								<input type="text" id="numberOfLapsSwimActivity"/>
+								<small id="numberOfLapsSwimActivityHelp" class="form-text text-muted">
+									How many laps?
+								</small>
+							</div>
+							<div class="form-group">
+								<label for="descriptionSwimActivity">Description:</label>
+								<textarea id="descriptionSwimActivity" class="form-control" rows="5" ></textarea>
+								<small id="descriptionSwimActivityHelp" class="form-text text-muted">
+									Write a small description about your training.
+								</small>
+							</div>
+						</div>
+						<div id="buddiesSwimActivity">
+							<div style="overflow-y: scroll; max-height: 500px;">
+								<div th:each="user : ${users}" class="card" style="width: 13rem; float: left; margin-right: 5px; margin-bottom: 5px; height: 20rem">
+								  <img class="card-img-top selectUserImg" th:src="@{'/images/user/'+${user.getPicture()}}" alt="Card image cap">
+								  <div class="card-body">
+								    <h5 class="card-title" th:text="${user.getDisplayName()}"></h5>
+								    <button th:attr="data-id=${user.getId()}" class="btn btn-primary addBuddyButton">Add buddy</button>
+								  </div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
