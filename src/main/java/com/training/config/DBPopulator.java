@@ -413,75 +413,59 @@ public class DBPopulator implements CommandLineRunner {
                 .session(s21)
                 .build());
         
-        Session s22 = Session.builder().build();
-        this.sessionRepository.save(s22);
-        swimTrainingRepository.save(IndoorSwim.builder()
-                .date(LocalDate.of(2018, 12, 27))
-                .time(LocalTime.of(11, 33))
-                .swimmingPlace(piscinaScorpion)
-                .numberOfLaps(60)
-                .duration(42.29)
-                .poolLength(PoolLength.POOL_LENGTH_25_METER)
-                .users(buddies)
-                .pattern(p300p200)
-                .session(s22)
-                .build());
-        
-        Session s23 = Session.builder().build();
-        this.sessionRepository.save(s23);
-        swimTrainingRepository.save(IndoorSwim.builder()
-                .date(LocalDate.of(2018, 12, 30))
-                .time(LocalTime.of(13, 18))
-                .swimmingPlace(kielHoern)
-                .numberOfLaps(36)
-                .duration(51.0)
-                .poolLength(PoolLength.POOL_LENGTH_50_METER)
-                .users(buddies)
-                .pattern(p300p200)
-                .session(s23)
-                .build());
+		this.insertSwim(LocalDate.of(2018, 12, 27), LocalTime.of(11, 33), 42.29, 60, buddies, piscinaScorpion, PoolLength.POOL_LENGTH_25_METER);
 
-        this.insertSwim(LocalDate.of(2019, 1, 2), LocalTime.of(17, 39), 41.53, 60, buddies, hallenbadMitte);
-        
-        this.insertSwim(LocalDate.of(2019, 1, 4), LocalTime.of(10, 26), 40.08, 64, lorenzoUser, hallenbadMitte);
-        
-        this.insertSwim(LocalDate.of(2019, 1, 5), LocalTime.of(14, 39), 21.0, 32, buddies, hallenbadOst);
-        
-        this.insertSwim(LocalDate.of(2019, 1, 7), LocalTime.of(18, 05), 45.10, 68, lorenzoUser, hallenbadMitte);
-        
-        this.insertSwim(LocalDate.of(2019, 1, 9), LocalTime.of(18, 57), 39.25, 60, buddies, hallenbadMitte);
-        
-        this.insertSwim(LocalDate.of(2019, 1, 12), LocalTime.of(12, 01), 46.30, 68, buddies, hallenbadOst);
+		this.insertSwim(LocalDate.of(2018, 12, 30), LocalTime.of(13, 18), 51.0, 36, buddies, kielHoern, PoolLength.POOL_LENGTH_50_METER);
 
-        this.insertSwim(LocalDate.of(2019, 1, 15), LocalTime.of(17, 11), 40.44, 64, buddies, hallenbadOst);
+        this.insertSwim(LocalDate.of(2019, 1, 2), LocalTime.of(17, 39), 41.53, 60, buddies, hallenbadMitte, PoolLength.POOL_LENGTH_25_METER);
         
-        this.insertSwim(LocalDate.of(2019, 1, 17), LocalTime.of(17, 01), 43.35, 64, buddies, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 1, 4), LocalTime.of(10, 26), 40.08, 64, lorenzoUser, hallenbadMitte, PoolLength.POOL_LENGTH_25_METER);
+        
+        this.insertSwim(LocalDate.of(2019, 1, 5), LocalTime.of(14, 39), 21.0, 32, buddies, hallenbadOst, PoolLength.POOL_LENGTH_25_METER);
+        
+        this.insertSwim(LocalDate.of(2019, 1, 7), LocalTime.of(18, 05), 45.10, 68, lorenzoUser, hallenbadMitte, PoolLength.POOL_LENGTH_25_METER);
+        
+        this.insertSwim(LocalDate.of(2019, 1, 9), LocalTime.of(18, 57), 39.25, 60, buddies, hallenbadMitte, PoolLength.POOL_LENGTH_25_METER);
+        
+        this.insertRun(LocalDate.of(2019, 1, 10), LocalTime.of(17, 49), 28.18, 5.01, lorenzoUser);
+		
+		this.insertSwim(LocalDate.of(2019, 1, 12), LocalTime.of(12, 01), 46.30, 68, buddies, hallenbadOst, PoolLength.POOL_LENGTH_25_METER);
 
-        this.insertSwim(LocalDate.of(2019, 1, 24), LocalTime.of(18, 05), 33.51, 48, buddies, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 1, 15), LocalTime.of(17, 11), 40.44, 64, buddies, hallenbadOst, PoolLength.POOL_LENGTH_25_METER);
+		
+		this.insertRun(LocalDate.of(2019, 1, 16), LocalTime.of(16, 01), 33.36, 6.02, lorenzoUser);
         
-        this.insertSwim(LocalDate.of(2019, 1, 27), LocalTime.of(11, 07), 29.49, 48, buddies, hallenbadOst);
+        this.insertSwim(LocalDate.of(2019, 1, 17), LocalTime.of(17, 01), 43.35, 64, buddies, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER);
+
+        this.insertSwim(LocalDate.of(2019, 1, 24), LocalTime.of(18, 05), 33.51, 48, buddies, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER);
         
-        this.insertSwim(LocalDate.of(2019, 1, 29), LocalTime.of(18, 38), 39.35, 60, buddies, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 1, 27), LocalTime.of(11, 07), 29.49, 48, buddies, hallenbadOst, PoolLength.POOL_LENGTH_25_METER);
         
-        this.insertSwim(LocalDate.of(2019, 1, 31), LocalTime.of(17, 38), 39.32, 60, buddies, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 1, 29), LocalTime.of(18, 38), 39.35, 60, buddies, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER);
         
-        this.insertSwim(LocalDate.of(2019, 2, 3), LocalTime.of(10, 49),  38.45, 64, buddies, hallenbadOst);
+        this.insertSwim(LocalDate.of(2019, 1, 31), LocalTime.of(17, 38), 39.32, 60, buddies, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER);
         
-        this.insertSwim(LocalDate.of(2019, 2, 5), LocalTime.of(18, 40),  35.20, 56, buddies, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 2, 3), LocalTime.of(10, 49),  38.45, 64, buddies, hallenbadOst, PoolLength.POOL_LENGTH_25_METER);
         
-        this.insertSwim(LocalDate.of(2019, 2, 7), LocalTime.of(17, 9),   41.03, 64, buddies, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 2, 5), LocalTime.of(18, 40),  35.20, 56, buddies, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER);
         
-        this.insertSwim(LocalDate.of(2019, 2, 9), LocalTime.of(8, 30),   32.46, 52, buddies, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 2, 7), LocalTime.of(17, 9),   41.03, 64, buddies, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER);
         
-        this.insertSwim(LocalDate.of(2019, 2, 12), LocalTime.of(18, 36),   42.25, 68, buddies, hallenbadOst);
+        this.insertSwim(LocalDate.of(2019, 2, 9), LocalTime.of(8, 30),   32.46, 52, buddies, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER);
+        
+        this.insertSwim(LocalDate.of(2019, 2, 12), LocalTime.of(18, 36),   42.25, 68, buddies, hallenbadOst, PoolLength.POOL_LENGTH_25_METER);
         
         this.insertRun(LocalDate.of(2019, 2, 13), LocalTime.of(17, 27), 28.22, 5.19, lorenzoUser);
         
-        this.insertSwim(LocalDate.of(2019, 2, 14), LocalTime.of(18, 04),   41.45, 68, buddies, hallenbadHiltrup);
+        this.insertSwim(LocalDate.of(2019, 2, 14), LocalTime.of(18, 04),   41.45, 68, buddies, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER);
         
         this.insertRun(LocalDate.of(2019, 2, 16), LocalTime.of(10, 46), 32.27, 5.30, buddies);
         
-        this.insertSwim(LocalDate.of(2019, 2, 17), LocalTime.of(12, 04),   42.45, 68, buddies, hallenbadOst);
+        this.insertSwim(LocalDate.of(2019, 2, 17), LocalTime.of(12, 04),   42.45, 68, buddies, hallenbadOst, PoolLength.POOL_LENGTH_25_METER);
+		
+		this.insertRun(LocalDate.of(2019, 2, 18), LocalTime.of(16, 22), 33.15, 6.03, lorenzoUser);
+		
+		this.insertSwim(LocalDate.of(2019, 2, 19), LocalTime.of(17, 43),   40.04, 68, buddies, hallenbadOst, PoolLength.POOL_LENGTH_25_METER);
         
         
     }
@@ -499,7 +483,7 @@ public class DBPopulator implements CommandLineRunner {
         		.build());
     }
     
-    private void insertSwim(LocalDate date, LocalTime time, Double duration, Integer laps, List<User> users, SwimmingPlace swimmingPlace) {
+    private void insertSwim(LocalDate date, LocalTime time, Double duration, Integer laps, List<User> users, SwimmingPlace swimmingPlace, PoolLength poolLength) {
     	Session session = Session.builder().build();
         this.sessionRepository.save(session);
         swimTrainingRepository.save(IndoorSwim.builder()
@@ -508,7 +492,7 @@ public class DBPopulator implements CommandLineRunner {
                 .swimmingPlace(swimmingPlace)
                 .numberOfLaps(laps)
                 .duration(duration)
-                .poolLength(PoolLength.POOL_LENGTH_25_METER)
+                .poolLength(poolLength)
                 .users(users)
                 .session(session)
                 .build());
