@@ -44,9 +44,7 @@ function updateViewGetAllSwimMonthViewCB(data, dataForCallback){
 
 function updateViewGetAllSwimCB(data, dataForCallback){
 	
-	console.log("[WHERE] - updateViewGetAllSwimCB");
-	console.log(JSON.stringify(data));
-	let columns = ['Date', 'Distance (m)', 'Duration (min)', 'min/100 m', 'Location'];
+	let columns = ['Date', 'Distance (m)', 'Duration (min)', 'Mov Duration (min)', 'Location'];
 	let neededData = new Array(data.length);
 	var dataForChart = new Array(data.length);
 	//dataForChart[0] = "Distance (m)";
@@ -61,15 +59,24 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 			poolLength = 31;
 		}
 		let tmpDistance = parseInt(data[i].numberOfLaps) * poolLength;
+		//duration
 		let duration = data[i].duration;
-		let minEvery100Meter = 100.0 * (duration/tmpDistance);
+		let minEvery100MeterDuration    = 100.0 * (duration/tmpDistance);
+		duration += " - " + minEvery100MeterDuration.toFixed(2) + " min/100 m";
+		//movement duration
+		let movementDuration = data[i].movementDuration;
+		if(movementDuration != undefined){
+			let minEvery100MeterMovDuration = 100.0 * (movementDuration/tmpDistance);
+			movementDuration += " - " + minEvery100MeterMovDuration.toFixed(2) + " min/100 m";
+		}else{
+			movementDuration = "NA";
+		}
+		
 		dataForChart[i] = tmpDistance;
-		let tmp = [tmpDate, tmpDistance, duration, minEvery100Meter.toFixed(2), data[i].swimmingPlace.name];
+		let tmp = [tmpDate, tmpDistance, duration, movementDuration, data[i].swimmingPlace.name];
 		neededData[i]=tmp;
 	}
-	console.log(JSON.stringify(neededData));
 	createAndFillTable(activityTable, columns, neededData);
-	//dataForChart.push("Distance (m)");
 	dataForChart.reverse();
 	dataForChart.unshift("Distance (m)");
 	addBasicChart('#chart', dataForChart);

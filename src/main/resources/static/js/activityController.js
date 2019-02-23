@@ -12,7 +12,7 @@ var backgroundColorSelectItem = "#4d4dff";
 var defaultColor = "white";
 
 var activityObject = undefined;
-var users=new Array();
+var users=new Array();//TODO: add current user!
 
 //{
 //	X "date":"2018-12-21",
@@ -21,9 +21,9 @@ var users=new Array();
 //	X "duration":"75",
 //	X "numberOfLaps":"1000",
 //	X "swimmingPlace":"2600",
-//	  "pattern":"2596",
+//	- "pattern":"2596",
 //	  "users": ["2593", "2593"],
-//	  "session":"2604",
+//	- "session":"2604",
 //	X "poolLength":"POOL_LENGTH_25_METER"
 //}
 
@@ -78,6 +78,7 @@ function setTimeInfoAndSwim(){
 	setActivityAttribute("date", dataTime[0]);
 	setActivityAttribute("time", dataTime[1]);
 	setActivityAttribute("duration", $("#inputDurationActivity").val());
+	setActivityAttribute("movementDuration", $("#inputMovementDurationActivity").val());
 	context = SET_PLACE;
 	$( "#generalInformationActivity" ).fadeOut( function() {
 		$("#exampleModalLabel").text("Where did you do it?");

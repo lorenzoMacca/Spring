@@ -38,6 +38,8 @@ public class IndoorSwim implements Comparable<IndoorSwim>{
 
     @NotNull
     private Double duration;
+    
+    private Double movementDuration;
 
     @NotNull
     private Integer numberOfLaps;
