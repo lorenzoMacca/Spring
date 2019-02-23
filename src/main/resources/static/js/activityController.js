@@ -152,7 +152,25 @@ function addUser(id){
 	}
 }
 
+function removeUser(id){
+	for(let i=0; i<users.length; i++){
+		if(users[i] === id){
+			users.splice(i, 1);//remove 1 element in position i
+		}
+	}
+}
+
 $(".addBuddyButton").click(function(){
 	let userId = $(this).attr('data-id');
-	addUser(userId);
+	if($(this).hasClass("btn-primary")){
+		addUser(userId);
+		$(this).removeClass("btn-primary");
+		$(this).addClass("btn-warning");
+		$(this).text("remove");
+	}else if($(this).hasClass("btn-warning")){
+		removeUser(userId);
+		$(this).removeClass("btn-warning");
+		$(this).addClass("btn-primary");
+		$(this).text("Add buddy");
+	}
 });
