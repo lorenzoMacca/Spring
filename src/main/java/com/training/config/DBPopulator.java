@@ -357,33 +357,10 @@ public class DBPopulator implements CommandLineRunner {
                 .session(s17)
                 .build());
         
-        Session s18 = Session.builder().build();
-        this.sessionRepository.save(s18);
-        swimTrainingRepository.save(IndoorSwim.builder()
-                .date(LocalDate.of(2018, 12, 16))
-                .time(LocalTime.of(10, 30))
-                .swimmingPlace(hallenbadOst)
-                .numberOfLaps(64)
-                .duration(50.0)
-                .poolLength(PoolLength.POOL_LENGTH_25_METER)
-                .users(lorenzoUser)
-                .pattern(p300p200)
-                .session(s18)
-                .build());
         
-        Session s19 = Session.builder().build();
-        this.sessionRepository.save(s19);
-        swimTrainingRepository.save(IndoorSwim.builder()
-                .date(LocalDate.of(2018, 12, 17))
-                .time(LocalTime.of(18, 30))
-                .swimmingPlace(hallenbadMitte)
-                .numberOfLaps(68)
-                .duration(49.0)
-                .poolLength(PoolLength.POOL_LENGTH_25_METER)
-                .users(buddies)
-                .pattern(p300p200)
-                .session(s19)
-                .build());
+        this.insertSwim(LocalDate.of(2018, 12, 16), LocalTime.of(10, 30), 50.0, 64, lorenzoUser, hallenbadOst, PoolLength.POOL_LENGTH_25_METER, null);
+        
+        this.insertSwim(LocalDate.of(2018, 12, 17), LocalTime.of(18, 30), 49.0, 68, buddies, hallenbadMitte, PoolLength.POOL_LENGTH_25_METER, null);
         
         this.insertSwim(LocalDate.of(2018, 12, 20), LocalTime.of(6, 30), 38.09, 60, lorenzoUser, kinderhause, PoolLength.POOL_LENGTH_25_METER, null);
         
@@ -445,7 +422,7 @@ public class DBPopulator implements CommandLineRunner {
 		
 		this.insertSwim(LocalDate.of(2019, 2, 23), LocalTime.of(10, 45),   40.39, 70, lorenzoUser, hallenbadOst, PoolLength.POOL_LENGTH_25_METER, 35.39);
 
-        
+		this.insertRun(LocalDate.of(2019, 2, 23), LocalTime.of(17, 22), 35.04, 5.24, buddies);
         
     }
     

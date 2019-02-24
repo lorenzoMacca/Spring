@@ -22,10 +22,16 @@ var users=new Array();//TODO: add current user!
 //	X "numberOfLaps":"1000",
 //	X "swimmingPlace":"2600",
 //	- "pattern":"2596",
-//	  "users": ["2593", "2593"],
+//	X "users": ["2593", "2593"],
 //	- "session":"2604",
 //	X "poolLength":"POOL_LENGTH_25_METER"
 //}
+
+function initUserList(){
+	users = new Array();
+	let currentUserId = $("#currentUserInfo").attr("data-id");
+	users.push(currentUserId);
+}
 
 function setActivityAttribute(propertyName, attr){
 	activityObject[propertyName] = attr;
@@ -114,6 +120,7 @@ function setDetails(){
 	setActivityAttribute("numberOfLaps", $('#numberOfLapsSwimActivity').val());
 	setActivityAttribute("description", $('#descriptionSwimActivity').val());
 	context = SET_USERS;
+	initUserList();
 	$("#detailsSwimActivity" ).fadeOut( function() {
 		$("#exampleModalLabel").text("Select your buddies");
 		$("#buddiesSwimActivity").show();
