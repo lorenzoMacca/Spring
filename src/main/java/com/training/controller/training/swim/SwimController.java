@@ -51,12 +51,11 @@ public class SwimController {
         return this.swimService.delete(activityId);
     }
 
-    @PostMapping("/sessions/{sessionId}/indorSwims/")
+    @PostMapping("/sessions/indorSwims/")
     public ResponseEntity<IndoorSwim> saveIndorSwimActivity(
-            @RequestBody JsonNode indoorSwimJson,
-            @PathVariable(value="sessionId") Long sessionId
+            @RequestBody JsonNode indoorSwimJson
     ){
-    	IndoorSwim indoorSwimFromDb = this.swimService.save(sessionId, indoorSwimJson);
+    	IndoorSwim indoorSwimFromDb = this.swimService.save(indoorSwimJson);
         return new ResponseEntity<>(indoorSwimFromDb, HttpHeaders.EMPTY, HttpStatus.CREATED);
     }
     

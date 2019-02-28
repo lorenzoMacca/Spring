@@ -92,12 +92,8 @@ public class SwimService {
 		
 	}
 
-    public IndoorSwim save(Long sessionId, JsonNode json) {
+    public IndoorSwim save(JsonNode json) {
 		IndoorSwim indoorSwim = this.jsonToIndoorSwimConverter.convert(json);
-		if(sessionId != indoorSwim.getSession().getId()) {
-			Session s = this.sessionRepository.getOne(sessionId);
-			indoorSwim.setSession(s);
-		}
 		return this.swimTrainingRepository.save(indoorSwim);
     }
     

@@ -135,7 +135,7 @@ function setUser(){
 }
 
 function saveSwim(){
-	AjaxSetUp.sendRequestAndHandleAnswer("POST", "/sessions/2604/indorSwims/", activityObject, {});
+	AjaxSetUp.sendRequestAndHandleAnswer("/sessions/indorSwims/", "POST", activityObject, {});
 }
 
 $("#newActivityNextButton").click(function(){

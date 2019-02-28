@@ -66,26 +66,29 @@ public class JsonToIndoorSwimConverter implements EntityConverter<JsonNode, Indo
 		
 		String description = node.get("description").textValue();
 		Double duration = Double.parseDouble(node.get("duration").textValue());
+		Double movDuration = Double.parseDouble(node.get("movementDuration").textValue());
 		Integer numberOfLaps = Integer.parseInt(node.get("numberOfLaps").textValue());
 		SwimmingPlace swimmingPlace = this.swimminPlaceRepository.getOne(Long.parseLong((node.get("swimmingPlace").textValue())));
-		SwimTrainingPattern pattern = this.patternRepository.getOne(Long.parseLong((node.get("pattern").textValue())));
 		
 		List<User> users = this.utilsConverter.extractUsers(node, this.userRepository);
 		
 		PoolLength poolLength = PoolLength.valueOf(node.get("poolLength").textValue());
-		Session session = this.sessionRepositor.getOne(Long.parseLong((node.get("session").textValue())));
+		
+		Session session = Session.builder().build();
+        Session sessionFromDb = this.sessionRepository.save(session); //this.sessionRepositor.getOne(Long.parseLong((node.get("session").textValue())));
 
 		
 		IndoorSwim indoorSwim = IndoorSwim.builder().date(date)
 				.description(description)
 				.duration(duration)
 				.numberOfLaps(numberOfLaps)
-				.pattern(pattern)
 				.poolLength(poolLength)
-				.session(session)
+				.session(sessionFromDb)
 				.time(time)
 				.swimmingPlace(swimmingPlace)
-				.users(users).build();
+				.users(users)
+				.movementDuration(movDuration)
+				.build();
 		
 		return indoorSwim;
 	}
