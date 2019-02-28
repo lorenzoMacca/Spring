@@ -7,6 +7,7 @@ var SET_TIME_INFO   = "2";
 var SET_PLACE       = "3";
 var SET_SWIM_INFO   = "4";
 var SET_USERS       = "5";
+var SAVE_SWIM       = "6";
 var context = SELECT_ACTIVITY; 
 var backgroundColorSelectItem = "#4d4dff";
 var defaultColor = "white";
@@ -130,7 +131,11 @@ function setDetails(){
 function setUser(){
 	setActivityAttribute("users", users);
 	console.log(JSON.stringify(activityObject));
-	//SET THE CURRENT USER AND SAVE
+	context = SAVE_SWIM;
+}
+
+function saveSwim(){
+	AjaxSetUp.sendRequestAndHandleAnswer("POST", "/sessions/2604/indorSwims/", activityObject, {});
 }
 
 $("#newActivityNextButton").click(function(){
@@ -144,6 +149,8 @@ $("#newActivityNextButton").click(function(){
 		setDetails();
 	}else if(context == SET_USERS && selectedItem == SWIM_ID){
 		setUser();
+	}else if(context == SAVE_SWIM && selectedItem == SWIM_ID){
+		saveSwim();
 	}
 	
 });
