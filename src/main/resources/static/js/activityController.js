@@ -52,6 +52,7 @@ function initModalView(){
 	$('#placeInformationActivity').hide();
 	$('#detailsSwimActivity').hide();
 	$("#buddiesSwimActivity").hide();
+    $("#summarySwimActivity").hide();
 }
 
 $(".clickableImg").on( "mouseenter", function( event ) {
@@ -132,10 +133,15 @@ function setUser(){
 	setActivityAttribute("users", users);
 	console.log(JSON.stringify(activityObject));
 	context = SAVE_SWIM;
+    $("#buddiesSwimActivity" ).fadeOut( function() {
+        $("#exampleModalLabel").text("Activity' summary");
+        $("#newActivityNextButton").text("Save");
+        $("#summarySwimActivity").show();
+    });
 }
 
 function saveSwim(){
-	AjaxSetUp.sendRequestAndHandleAnswer("/sessions/indorSwims/", "POST", activityObject, {});
+	AjaxSetUp.sendRequestAndHandleAnswer("/sessions/indorSwims/", "POST", activityObject, activityObject, saveSwimSuccessfulCallBack, saveSwimFailCallback);
 }
 
 $("#newActivityNextButton").click(function(){
@@ -189,3 +195,13 @@ $(".addBuddyButton").click(function(){
 		$(this).text("Add buddy");
 	}
 });
+
+function saveSwimSuccessfulCallBack(dataForCb, data, textStatus, xhr) {
+	$("#selectActivityModal").modal('hide')
+	notifySuccess("Swim activity on " + dataForCb["date"] + " saved.")
+    switchToSwimActivities();
+}
+
+function saveSwimFailCallback(data, textStatus, xhr) {
+	notifyFailure("Sorry :( but something went wrong.")
+}

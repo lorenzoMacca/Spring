@@ -328,21 +328,9 @@ public class DBPopulator implements CommandLineRunner {
                 .pattern(p300p200)
                 .session(s15)
                 .build());
-        
-        Session s16 = Session.builder().build();
-        this.sessionRepository.save(s16);
-        swimTrainingRepository.save(IndoorSwim.builder()
-                .date(LocalDate.of(2018, 12, 10))
-                .time(LocalTime.of(18, 45))
-                .swimmingPlace(hallenbadMitte)
-                .numberOfLaps(64)
-                .duration(47.0)
-                .poolLength(PoolLength.POOL_LENGTH_25_METER)
-                .users(buddies)
-                .pattern(p300p200)
-                .session(s16)
-                .build());
-        
+
+        this.insertSwim(LocalDate.of(2018, 12, 12), LocalTime.of(18, 45), 47.0, 64, buddies, hallenbadMitte, PoolLength.POOL_LENGTH_25_METER, null);
+
         this.insertSwim(LocalDate.of(2018, 12, 13), LocalTime.of(18, 45), 46.0, 64, buddies, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER, null);
         
         this.insertSwim(LocalDate.of(2018, 12, 16), LocalTime.of(10, 30), 50.0, 64, lorenzoUser, hallenbadOst, PoolLength.POOL_LENGTH_25_METER, null);
@@ -414,7 +402,9 @@ public class DBPopulator implements CommandLineRunner {
 		this.insertSwim(LocalDate.of(2019, 2, 26), LocalTime.of(19, 34),   42.04, 70, buddies, hallenbadOst, PoolLength.POOL_LENGTH_25_METER, 35.42);
 		
 		this.insertRun(LocalDate.of(2019, 2, 27), LocalTime.of(16, 32), 28.31, 5.01, lorenzoUser);
-        
+
+        this.insertSwim(LocalDate.of(2019, 2, 28), LocalTime.of(17, 57),   41.23, 72, lorenzoUser, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER, 37.02);
+
     }
     
     private void insertRun(LocalDate date, LocalTime time, Double duration, Double dinstance, List<User> users) {
