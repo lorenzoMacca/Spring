@@ -1,0 +1,18 @@
+# Get the indoor swim
+select indoor_swim.id, date, duration, swimming_place.name, movement_duration, number_of_laps, indoor_swim.description, user.name  
+from indoor_swim, swimming_place, user_swim, user 
+where swimming_place.id = swimming_place_id and user_swim.user_id = indoor_swim.id and user.id = user_swim.indoor_swim_id;
+
+# Dump db (password mytraining)
+mysqldump -u mytraining -p --databases mytraining > 20180303_mytraining_dump.sql
+
+# Reload db
+mysql < dump.sql
+
+
+##crete copy db
+mysqladmin -u root -p create mytraining_copy
+mysqldump -u root -p mytraining > test.sql
+mysql -u root -p mytraining_copy < test.sql
+
+The difference between the two preceding commands is that without --databases, the dump output contains no CREATE DATABASE or USE statements. This has several implications:
