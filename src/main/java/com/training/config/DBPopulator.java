@@ -59,7 +59,7 @@ public class DBPopulator implements CommandLineRunner {
     public void run(String... args) {
     	
 
-        userRepository.deleteAllInBatch();
+        /*userRepository.deleteAllInBatch();
         sessionRepository.deleteAll();
         swimmingPlaceRepository.deleteAll();
         swimTRainingPatternRepository.deleteAll();
@@ -404,6 +404,13 @@ public class DBPopulator implements CommandLineRunner {
 		this.insertRun(LocalDate.of(2019, 2, 27), LocalTime.of(16, 32), 28.31, 5.01, lorenzoUser);
 
         this.insertSwim(LocalDate.of(2019, 2, 28), LocalTime.of(17, 57),   41.23, 72, lorenzoUser, hallenbadHiltrup, PoolLength.POOL_LENGTH_25_METER, 37.02);
+        
+        this.insertSwim(LocalDate.of(2019, 3, 2), LocalTime.of(10, 15),   42.23, 72, lorenzoUser, hallenbadOst, PoolLength.POOL_LENGTH_25_METER, 37.30);*/
+        
+		
+
+        
+
 
     }
     

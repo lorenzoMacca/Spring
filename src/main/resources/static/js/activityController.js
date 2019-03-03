@@ -28,6 +28,13 @@ var users=new Array();//TODO: add current user!
 //	X "poolLength":"POOL_LENGTH_25_METER"
 //}
 
+function init(){
+	selectedItem = "-1";
+	context = SELECT_ACTIVITY; 
+	activityObject = undefined;
+	users=new Array();
+}
+
 function initUserList(){
 	users = new Array();
 	let currentUserId = $("#currentUserInfo").attr("data-id");
@@ -53,6 +60,7 @@ function initModalView(){
 	$('#detailsSwimActivity').hide();
 	$("#buddiesSwimActivity").hide();
     $("#summarySwimActivity").hide();
+    init();
 }
 
 $(".clickableImg").on( "mouseenter", function( event ) {
