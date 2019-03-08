@@ -47,6 +47,7 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 	let columns = ['Date', 'Distance (m)', 'Duration (min)', 'Mov Duration (min)', 'Location'];
 	let neededData = new Array(data.length);
 	var dataForChart = new Array(data.length);
+	var custom_categories = new Array(data.length);
 	//dataForChart[0] = "Distance (m)";
 	for (let i = 0; i < data.length; i++) {
 		let tmpDate = "" + data[i].date + " " + data[i].time.substring(0,5);
@@ -73,13 +74,22 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 		}
 		
 		dataForChart[i] = tmpDistance;
+        //custom_categories[i] = data[i].date;
 		let tmp = [tmpDate, tmpDistance, duration, movementDuration, data[i].swimmingPlace.name];
 		neededData[i]=tmp;
 	}
 	createAndFillTable(activityTable, columns, neededData);
 	dataForChart.reverse();
 	dataForChart.unshift("Distance (m)");
-	addBasicChart('#chart', dataForChart);
+	BasicChart()
+		.withSelector('#chart')
+		.withColumns(dataForChart)
+		.withMinY(100)
+		.activeLabel(true)
+		.withTitleCallback(titleCallBackFunc)
+		.activeZoom(true)
+		.withCategories(custom_categories)
+		.generateChart();
 }
 
 function addTabs(){
@@ -98,5 +108,9 @@ function switchToSwimActivities(){
 $("#swimSectionMenuBtnId").click(function(){
     switchToSwimActivities();
 });
+
+function titleCallBackFunc(item) {
+	return "Swim activity";
+}
 
 

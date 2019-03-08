@@ -65,23 +65,6 @@ function createAndFillTabs(parentId, items){
 	$(parentId).html(html);
 }
 
-function addBasicChart(selector, column, minY , maxY){
-	var chart = c3.generate({
-	    bindto: selector,
-	    data: {
-	    columns: [column]
-	    },
-	    axis: {
-	        y: {
-	            max: maxY,
-	            min: 100,
-	            // Range includes padding, set 0 if no padding needed
-	            // padding: {top:0, bottom:0}
-	        }
-	    }
-	});
-}
-
 function addBasicBarChart(selector, column, serieName){
 	var chart = c3.generate({
 	    bindto: selector,
