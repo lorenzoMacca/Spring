@@ -5,6 +5,18 @@ var POOL_LENGTH_25_METER = "POOL_LENGTH_25_METER";
 var POOL_LENGTH_31_METER = "POOL_LENGTH_31_METER";
 var POOL_LENGTH_50_METER = "POOL_LENGTH_50_METER";
 
+var swimActivitiesC3Utilities = {
+		distances : null,
+		dates : null,
+		titleCallBackFunc: function(index) {
+			return swimActivitiesC3Utilities.dates[index];
+		},
+		valueCallBack: function(value, ratio, id, index){
+			return value + "m";
+		}
+}
+
+
 function addTabButtonFunktionalities(){
 	$("#tabBtn0").unbind('click').click(function(){
 		getAll(INDOR_SWIM_GET_ALL, updateViewGetAllSwimCB, null);
@@ -43,7 +55,6 @@ function updateViewGetAllSwimMonthViewCB(data, dataForCallback){
 
 
 function updateViewGetAllSwimCB(data, dataForCallback){
-	
 	let columns = ['Date', 'Distance (m)', 'Duration (min)', 'Mov Duration (min)', 'Location'];
 	let neededData = new Array(data.length);
 	var dataForChart = new Array(data.length);
@@ -74,21 +85,24 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 		}
 		
 		dataForChart[i] = tmpDistance;
-        //custom_categories[i] = data[i].date;
+        custom_categories[i] = data[i].date;
 		let tmp = [tmpDate, tmpDistance, duration, movementDuration, data[i].swimmingPlace.name];
 		neededData[i]=tmp;
 	}
 	createAndFillTable(activityTable, columns, neededData);
 	dataForChart.reverse();
 	dataForChart.unshift("Distance (m)");
+	custom_categories.reverse();
+	swimActivitiesC3Utilities.distances = dataForChart;
+	swimActivitiesC3Utilities.dates = custom_categories;
 	BasicChart()
 		.withSelector('#chart')
 		.withColumns(dataForChart)
 		.withMinY(100)
 		.activeLabel(true)
-		.withTitleCallback(titleCallBackFunc)
+		.withTitleCallback(swimActivitiesC3Utilities.titleCallBackFunc)
 		.activeZoom(true)
-		.withCategories(custom_categories)
+		.withValueCallback(swimActivitiesC3Utilities.valueCallBack)
 		.generateChart();
 }
 
@@ -109,8 +123,6 @@ $("#swimSectionMenuBtnId").click(function(){
     switchToSwimActivities();
 });
 
-function titleCallBackFunc(item) {
-	return "Swim activity";
-}
+
 
 

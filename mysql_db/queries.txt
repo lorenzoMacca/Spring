@@ -16,3 +16,7 @@ mysqldump -u root -p mytraining > test.sql
 mysql -u root -p mytraining_copy < test.sql
 
 The difference between the two preceding commands is that without --databases, the dump output contains no CREATE DATABASE or USE statements. This has several implications:
+
+# insert manual run activity
+insert into session values(ID);
+insert into run (date, description, distance, duration, time, session_id) values('2019-03-04', null, 7.03, 40.30, '17:29:00', 132);

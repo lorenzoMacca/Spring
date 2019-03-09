@@ -5,11 +5,23 @@ function BasicChart() {
         columns: null,
         minY: null,
         maxY: null,
-        custom_categories: null,
+        custom_categories: new Array(),
         label: false,
         titleCallback: null,
         zoom: false,
+        toolTipValueCallback: null,
+        data:new Array(),
+        yAxis : true,
+        xAxis : true,
 
+        showYAxis : function(v){
+        	this.yAxis = v;
+        	return this;
+        },
+        showXAxis : function(v){
+        	this.xAxis = v;
+        	return this;
+        },
         withSelector: function (v) {
             this.selector = v;
             return this;
@@ -38,12 +50,20 @@ function BasicChart() {
             this.titleCallback = v;
             return this;
         },
+        withValueCallback: function(v){
+        	this.toolTipValueCallback = v;
+        	return this;
+        },
         activeZoom: function (v) {
             this.zoom = v;
             return this;
         },
+        withData: function(v){
+        	this.data = v;
+        	return this;
+        },
         generateChart: function () {
-            var chart = c3.generate({
+            return c3.generate({
                 bindto: this.selector,
                 data: {
                     columns: [this.columns],
@@ -53,10 +73,12 @@ function BasicChart() {
                     y: {
                         max: this.maxY,
                         min: this.minY,
+                        show: this.yAxis
                     },
                     x: {
                         type: 'category',
-                        categories: this.custom_categories
+                        categories: this.custom_categories,
+                        show: this.xAxis
                     }
                 },
                 zoom: {
@@ -64,7 +86,8 @@ function BasicChart() {
                 },
                 tooltip: {
                     format: {
-                        title: this.titleCallback
+                        title: this.titleCallback,
+                        value: this.toolTipValueCallback
                     }
                 }
             });
