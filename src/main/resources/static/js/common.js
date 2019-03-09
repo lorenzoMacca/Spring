@@ -32,7 +32,7 @@ function createAndFillTable(parentId, columns, data, tableId, filter){
 		htmlDate +="</tr>";
 	}
 	var html = "";
-	html +="<table id="+tableId+" class='table table-hover'>"
+	html +="<table id="+tableId+" class='table table-hover table-sm'>"
 		     +"<thead>"
 		        +"<tr>"
 		           + htmlColumns
