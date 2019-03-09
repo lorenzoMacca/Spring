@@ -44,7 +44,7 @@ function updateViewGetAllSwimMonthViewCB(data, dataForCallback){
 		dataForChart[i] = distance;
 		
 	}
-	createAndFillTable(activityTable, columns, neededData);
+	createAndFillTable(activityTable, columns, neededData, "swimActivityMonthView", true);
 	let minY = Math.min(dataForChart);
 	let maxY = Math.max(dataForChart);
 	minY -= 100;
@@ -89,7 +89,7 @@ function updateViewGetAllSwimCB(data, dataForCallback){
 		let tmp = [tmpDate, tmpDistance, duration, movementDuration, data[i].swimmingPlace.name];
 		neededData[i]=tmp;
 	}
-	createAndFillTable(activityTable, columns, neededData);
+	createAndFillTable(activityTable, columns, neededData, "swimActivity", true);
 	dataForChart.reverse();
 	dataForChart.unshift("Distance (m)");
 	custom_categories.reverse();

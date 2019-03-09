@@ -18,7 +18,7 @@ function getAll(url, callback, dataForCallback){
 	executeAjaxCall(url, new Map(), callback, dataForCallback);
 }
 
-function createAndFillTable(parentId, columns, data){
+function createAndFillTable(parentId, columns, data, tableId, filter){
 	var htmlColumns = "";
 	columns.forEach(function(element) {
 		htmlColumns += "<th scope='col'>"+ element +"</th>"
@@ -32,7 +32,7 @@ function createAndFillTable(parentId, columns, data){
 		htmlDate +="</tr>";
 	}
 	var html = "";
-	html +="<table class='table table-hover'>"
+	html +="<table id="+tableId+" class='table table-hover'>"
 		     +"<thead>"
 		        +"<tr>"
 		           + htmlColumns
@@ -47,6 +47,10 @@ function createAndFillTable(parentId, columns, data){
 	$('.myTrainingTrClickable').unbind('click').click(function() {
 		$('#myTrainingModalShowIndorSwimInfo').modal();
 	});
+	
+	if(filter === true){
+		$("#"+tableId).excelTableFilter();
+	}
 }
 
 function createAndFillTabs(parentId, items){
