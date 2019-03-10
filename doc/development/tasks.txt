@@ -3,3 +3,4 @@ swim-activities
 D - download all the libs
 X - query to get all swims (month view also) need the user id.
 X - beautify chart month-view
+X - update title of the page
