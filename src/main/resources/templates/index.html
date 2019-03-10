@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
-    <title>Sidebar template</title>
+    <title>MYTRA</title>
 
     <!-- using online links -->
     
@@ -27,12 +27,12 @@
 </head>
 
 <body>
-    <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
+    <div class="page-wrapper default-theme sidebar-bg bg1 toggled pinned">
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
                 <div class="sidebar-item sidebar-brand">
-                    <a href="#">MyTraining</a>
+                    <a href="#">MYTRA</a>
                 </div>
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header d-flex flex-nowrap">
@@ -333,6 +333,10 @@
                         <a class="dropdown-item" href="#">My profile</a>
                         <a class="dropdown-item" href="#">Help</a>
                         <a class="dropdown-item" href="#">Setting</a>
+                        <a class="dropdown-item">
+                        	Pinned sidebar
+                        	<input type="checkbox" id="setPinnedSidebar" checked>
+                        </a>
                     </div>
                 </div>
                 <div>
@@ -571,11 +575,10 @@
 	<script th:src="@{js/ajax/ajax.js}"></script>
 	<script th:src="@{js/notifyJs/bootstrap-notify.min.js}"></script>
 	<script th:src="@{js/notifyJs/notify.js}"></script>
-	
 	<script th:src="@{js/excellikefilter/excel-bootstrap-table-filter-bundle.js}"></script>
-
 	<script th:src="@{js/sidebar-themes/main.js}"></script>
 	<script th:src="@{js/sidebar-themes/jquery.mCustomScrollbar.concat.min.js}"></script>
+	<script th:src="@{js/sidebar-themes/sidebarController.js}"></script>
 </body>
 
 </html>
