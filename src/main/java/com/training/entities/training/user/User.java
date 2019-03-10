@@ -33,6 +33,8 @@ public class User {
     private String description;
     
     private String picture;
+    
+    private String profession;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     @JsonBackReference
