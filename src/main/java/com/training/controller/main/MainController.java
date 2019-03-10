@@ -36,4 +36,20 @@ public class MainController {
         model.addAttribute("users", users);
         return "welcome";
     }
+    
+    @RequestMapping("/new")
+    public String welcomeNewDesign(final Model model) {
+    	
+    	List<User> users = (List<User>) userService.getAllUser();
+    	User currentUser = users.get(0);
+    	users.remove(currentUser);
+    	
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("swimPLaces", this.swimmingPlaceService.getAll());
+        model.addAttribute("POOL_LENGTH_25_METER",PoolLength.POOL_LENGTH_25_METER);
+        model.addAttribute("POOL_LENGTH_50_METER",PoolLength.POOL_LENGTH_50_METER);
+        model.addAttribute("POOL_LENGTH_31_METER",PoolLength.POOL_LENGTH_31_METER);
+        model.addAttribute("users", users);
+        return "index";
+    }
 }

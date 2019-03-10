@@ -1,0 +1,585 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    <title>Sidebar template</title>
+
+    <!-- using online links -->
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+        <!-- <link rel="stylesheet" th:href="@{/css/sidebar-themes/all.css}" type="text/css"> -->
+    <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+
+  	<link rel="stylesheet" th:href="@{/css/sidebar-themes/main.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/sidebar-themes/sidebar-themes.css}" type="text/css">
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/main.css}" />
+	<link rel="stylesheet" th:href="@{js/c3/c3.css}">
+	<link rel="stylesheet" th:href="@{js/datatimepicker/jquery.datetimepicker.min.css}">
+	<link rel="stylesheet" th:href="@{js/openlayers/ol.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{js/excellikefilter/excel-bootstrap-table-filter-style.css}" type="text/css">
+
+<script th:src="@{js/openlayers/ol.js}"></script>
+    
+</head>
+
+<body>
+    <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <!-- sidebar-brand  -->
+                <div class="sidebar-item sidebar-brand">
+                    <a href="#">MyTraining</a>
+                </div>
+                <!-- sidebar-header  -->
+                <div class="sidebar-item sidebar-header d-flex flex-nowrap">
+                    <div class="user-pic">
+                        <img class="img-responsive img-rounded" th:src="@{/images/user.jpg}" alt="User picture">
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">Jhon
+                            <strong>Smith</strong>
+                        </span>
+                        <span class="user-role">Administrator</span>
+                        <span class="user-status">
+                            <i class="fa fa-circle"></i>
+                            <span>Online</span>
+                        </span>
+                    </div>
+                </div>
+                <!-- sidebar-search  -->
+                <div class="sidebar-item sidebar-search">
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control search-menu" placeholder="Search...">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar-menu  -->
+                <div class=" sidebar-item sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>General</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-tachometer-alt"></i>
+                                <span class="menu-text">Activities</span>
+                                <span class="badge badge-pill badge-warning">New</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                	<li>
+                                        <a data-toggle="modal" onclick="initModalView()" data-target="#selectActivityModal">Add new activity</a>
+                                    </li>
+                                    <li>
+                                        <a id="swimSectionMenuBtnId">swim
+                                            <span class="badge badge-pill badge-success">Pro</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Run</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Bike</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown" hidden>
+                            <a href="#">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="menu-text">E-commerce</span>
+                                <span class="badge badge-pill badge-danger">3</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#">Products
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Orders</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Credit cart</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown" hidden>
+                            <a href="#">
+                                <i class="far fa-gem"></i>
+                                <span class="menu-text">Components</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#">General</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Panels</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Tables</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Icons</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Forms</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown" hidden>
+                            <a href="#">
+                                <i class="fa fa-chart-line"></i>
+                                <span class="menu-text">Charts</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#">Pie chart</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Line chart</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Bar chart</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Histogram</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-globe"></i>
+                                <span class="menu-text">Maps</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#">Google maps</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Open street map</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="header-menu">
+                            <span>Extra</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-book"></i>
+                                <span class="menu-text">Documentation</span>
+                                <span class="badge badge-pill badge-primary">Beta</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i>
+                                <span class="menu-text">Calendar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-folder"></i>
+                                <span class="menu-text">Examples</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+            <!-- sidebar-footer  -->
+            <div class="sidebar-footer">
+                <div class="dropdown">
+
+                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge badge-pill badge-warning notification">3</span>
+                    </a>
+                    <div class="dropdown-menu notifications" aria-labelledby="dropdownMenuMessage">
+                        <div class="notifications-header">
+                            <i class="fa fa-bell"></i>
+                            Notifications
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <div class="notification-content">
+                                <div class="icon">
+                                    <i class="fas fa-check text-success border border-success"></i>
+                                </div>
+                                <div class="content">
+                                    <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                        elit. In totam explicabo</div>
+                                    <div class="notification-time">
+                                        6 minutes ago
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <div class="notification-content">
+                                <div class="icon">
+                                    <i class="fas fa-exclamation text-info border border-info"></i>
+                                </div>
+                                <div class="content">
+                                    <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                        elit. In totam explicabo</div>
+                                    <div class="notification-time">
+                                        Today
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <div class="notification-content">
+                                <div class="icon">
+                                    <i class="fas fa-exclamation-triangle text-warning border border-warning"></i>
+                                </div>
+                                <div class="content">
+                                    <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                        elit. In totam explicabo</div>
+                                    <div class="notification-time">
+                                        Yesterday
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-center" href="#">View all notifications</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-envelope"></i>
+                        <span class="badge badge-pill badge-success notification">7</span>
+                    </a>
+                    <div class="dropdown-menu messages" aria-labelledby="dropdownMenuMessage">
+                        <div class="messages-header">
+                            <i class="fa fa-envelope"></i>
+                            Messages
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <div class="message-content">
+                                <div class="pic">
+                                    <img th:src="@{/images/user.jpg}" alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="message-title">
+                                        <strong> Jhon doe</strong>
+                                    </div>
+                                    <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                        elit. In totam explicabo</div>
+                                </div>
+                            </div>
+
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <div class="message-content">
+                                <div class="pic">
+                                    <img th:src="@{/images/user.jpg}" alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="message-title">
+                                        <strong> Jhon doe</strong>
+                                    </div>
+                                    <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                        elit. In totam explicabo</div>
+                                </div>
+                            </div>
+
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <div class="message-content">
+                                <div class="pic">
+                                    <img th:src="@{/images/user.jpg}" alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="message-title">
+                                        <strong> Jhon doe</strong>
+                                    </div>
+                                    <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                        elit. In totam explicabo</div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-center" href="#">View all messages</a>
+
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-cog"></i>
+                        <span class="badge-sonar"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuMessage">
+                        <a class="dropdown-item" href="#">My profile</a>
+                        <a class="dropdown-item" href="#">Help</a>
+                        <a class="dropdown-item" href="#">Setting</a>
+                    </div>
+                </div>
+                <div>
+                    <a href="#">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </div>
+                <div class="pinned-footer">
+                    <a href="#">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- page-content  -->
+        <main class="page-content pt-2">
+            <div id="overlay" class="overlay"></div>
+            <div class="container-fluid p-5">
+                <div id="rightContainer" class="rightContainer">
+					<div id="activityTabsId" class="activityTabs"></div>
+					<div id="chart" class="chartSpace"></div>
+					<div id="activityTable"></div>
+				</div>
+            </div>
+        </main>
+        <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    
+    <!-- Modal window -->
+		<div id="myTrainingModalShowIndorSwimInfo" class="modal" tabindex="-1"
+			role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Modal body text goes here.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END Modal window -->
+
+		<!-- Modal select activity -->
+		<div class="modal fade" id="selectActivityModal" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Select
+							activity</h5>
+					</div>
+					<div class="modal-body">
+						<div class="progress progressMargin">
+							<div id="progressBarActivity"
+								class="progress-bar progress-bar-striped" role="progressbar"
+								style="width: 10%" aria-valuenow="10" aria-valuemin="0"
+								aria-valuemax="100"></div>
+						</div>
+						<div id="selectActivityModalContent">
+							<table style="width: 100%">
+								<tr>
+									<td><a id="1" class="clickableImg"> <img
+											class="selectActivityImg" alt=""
+											th:src="@{/images/swimming-poll.png}">
+									</a></td>
+									<td><a id="2" class="clickableImg"> <img
+											class="selectActivityImg" alt=""
+											th:src="@{/images/running.png}">
+									</a></td>
+									<td><a id="3" class="clickableImg"> <img
+											class="selectActivityImg" alt=""
+											th:src="@{/images/cycling.png}">
+									</a></td>
+								</tr>
+								<tr>
+									<td><a id="4" class="clickableImg"> <img
+											class="selectActivityImg" alt=""
+											th:src="@{/images/img-icon.svg}">
+									</a></td>
+									<td><a id="5" class="clickableImg"> <img
+											class="selectActivityImg" alt=""
+											th:src="@{/images/img-icon.svg}">
+									</a></td>
+									<td><a id="6" class="clickableImg"> <img
+											class="selectActivityImg" alt=""
+											th:src="@{/images/img-icon.svg}">
+									</a></td>
+								</tr>
+								<tr>
+									<td><a id="7" class="clickableImg"> <img
+											class="selectActivityImg" alt=""
+											th:src="@{/images/img-icon.svg}">
+									</a></td>
+									<td><a id="8" class="clickableImg"> <img
+											class="selectActivityImg" alt=""
+											th:src="@{/images/img-icon.svg}">
+									</a></td>
+									<td><a id="9" class="clickableImg"> <img
+											class="selectActivityImg" alt=""
+											th:src="@{/images/img-icon.svg}">
+									</a></td>
+								</tr>
+							</table>
+						</div>
+						<div id="generalInformationActivity">
+							<form>
+								<div class="form-group">
+									<label for="datetimepicker">Date</label> <input type="text"
+										class="form-control" id="datetimepicker"
+										placeholder="Enter the date"> <small
+										id="inputDateActivityHelp" class="form-text text-muted">Enter
+										the date when you did the activity.</small>
+								</div>
+								<div class="form-group">
+									<label for="inputDurationActivity">Duration</label> <input
+										type="text" class="form-control" id="inputDurationActivity"
+										placeholder="Enter the duration"> <small
+										id="inputDurationActivityHelp" class="form-text text-muted">Enter
+										the duration in minutes.</small>
+								</div>
+								<div class="form-group">
+									<label for="inputMovementDurationActivity">Movement time</label> <input
+										type="text" class="form-control" id="inputMovementDurationActivity"
+										placeholder="Enter the time"> <small
+										id="inputMovementDurationActivityHelp" class="form-text text-muted">Enter
+										the time in minutes.</small>
+								</div>
+							</form>
+						</div>
+						<div id="placeInformationActivity">
+							<div class="form-group">
+								<label for="selectSwimmingPlaceActivity">Swimming pool</label>
+								<select id="selectSwimmingPlaceActivity">
+									<option th:each="sp : ${swimPLaces}" th:text="${sp.name}" th:value="${sp.id}"></option>
+								</select>
+								<small id="selectSwimmingPlaceActivityHelp" class="form-text text-muted">
+									Select the swimming pool where you trained.
+								</small>
+							</div>
+							<div class="form-group">
+								<label for="selectLongLane">Length of the lane</label>
+								<select id="selectLongLane">
+									<option th:value="${POOL_LENGTH_25_METER}">25 Meter</option>
+									<option th:value="${POOL_LENGTH_50_METER}">50 Meter</option>
+									<option th:value="${POOL_LENGTH_31_METER}">31 Meter</option>
+								</select>
+								<small id="selectSwimmingPlaceActivityHelp" class="form-text text-muted">
+									Select the length of the lane.
+								</small>
+							</div>
+<!-- 							<div id="map" class="map" style="height: 300px; width: 100%;"></div> -->
+						</div>
+						<div id="detailsSwimActivity">
+							<div class="form-group">
+								<label for="numberOfLapsSwimActivity">N° laps</label>
+								<input type="text" id="numberOfLapsSwimActivity"/>
+								<small id="numberOfLapsSwimActivityHelp" class="form-text text-muted">
+									How many laps?
+								</small>
+							</div>
+							<div class="form-group">
+								<label for="descriptionSwimActivity">Description:</label>
+								<textarea id="descriptionSwimActivity" class="form-control" rows="5" ></textarea>
+								<small id="descriptionSwimActivityHelp" class="form-text text-muted">
+									Write a small description about your training.
+								</small>
+							</div>
+						</div>
+						<div id="buddiesSwimActivity">
+							<div style="overflow-y: scroll; max-height: 500px;">
+								<div th:each="user : ${users}" class="card" style="width: 13rem; float: left; margin-right: 5px; margin-bottom: 5px; height: 20rem">
+								  <img class="card-img-top selectUserImg" th:src="@{'/images/user/'+${user.getPicture()}}" alt="Card image cap">
+								  <div class="card-body">
+								    <h5 class="card-title" th:text="${user.getDisplayName()}"></h5>
+								    <button th:attr="data-id=${user.getId()}" class="btn btn-primary addBuddyButton">Add buddy</button>
+								  </div>
+								</div>
+							</div>
+						</div>
+						<div id="summarySwimActivity">
+							<div>Press save to save the activity</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" id="newActivityNextButton"
+							class="btn btn-primary disabled">Next</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    <!-- using online scripts -->
+     <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+   </div>
+	<!-- /.container -->
+	<div>
+		<div id="currentUserInfo" data-th-attr="data-id=${currentUser.id}"></div>
+	</div>
+
+	<script th:src="@{js/jquery/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{js/popper/popper.min.js}"></script>
+	<script th:src="@{js/bootstrap/bootstrap.min.js}"></script>
+	<script th:src="@{js/d3/d3.min.js}"></script>
+	<script th:src="@{js/c3/c3.min.js}"></script>
+	<script th:src="@{js/validatejs/validate.min.js}"></script>
+	<script th:src="@{js/common.js}"></script>
+	<script th:src="@{js/BasicChart.js}"></script>
+	<script th:src="@{js/swimmController.js}"></script>
+	
+	<script th:src="@{js/datatimepicker/jquery.datetimepicker.full.min.js}"></script>
+
+	<script type="text/javascript">
+		jQuery('#datetimepicker').datetimepicker({
+			format : 'Y-m-d H:i'
+		});
+	</script>
+	
+
+	<script th:src="@{js/map.js}"></script>
+	<script th:src="@{js/activityController.js}"></script>
+	<script th:src="@{js/ajax/ajax.js}"></script>
+	<script th:src="@{js/notifyJs/bootstrap-notify.min.js}"></script>
+	<script th:src="@{js/notifyJs/notify.js}"></script>
+	
+	<script th:src="@{js/excellikefilter/excel-bootstrap-table-filter-bundle.js}"></script>
+
+	<script th:src="@{js/sidebar-themes/main.js}"></script>
+</body>
+
+</html>

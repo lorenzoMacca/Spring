@@ -115,8 +115,6 @@ function addTabs(){
 function switchToSwimActivities(){
     getAll(INDOR_SWIM_GET_ALL, updateViewGetAllSwimCB, null);
     addTabs();
-    $("#welcomeMessageContainerId").hide();
-    $(activityContainer).show();
 }
 
 $("#swimSectionMenuBtnId").click(function(){
