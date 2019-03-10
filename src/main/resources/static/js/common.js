@@ -1,6 +1,3 @@
-$(activityContainer).hide();
-
-
 function executeAjaxCall(url, map, callback, dataForCallback){
 	var dataToServer = "";
 	for (var [key, value] of map) {
