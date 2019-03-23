@@ -1,6 +1,8 @@
 package com.training.entities.training.user;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.training.entities.health.Health;
 import com.training.entities.training.Run;
 import com.training.entities.training.exercise.Exercise;
 import com.training.entities.training.swim.IndoorSwim;
@@ -47,6 +49,10 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     @JsonBackReference
     List<Exercise> exercises;
+    
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="user")
+    @JsonBackReference
+    private Health health;
     
     public String getDisplayName() {
     	return this.name;
