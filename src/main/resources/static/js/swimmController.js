@@ -30,9 +30,9 @@ function addTabButtonFunktionalities(){
 	});
 }
 
-function updateViewGetAllSwimMonthViewCB(data, dataForCallback){
-	console.log("[WHERE] - updateViewGetAllSwimMonthViewCB");
-	console.log(JSON.stringify(data));
+function updateViewGetAllSwimMonthViewCB(dataForCallback, data){
+	//console.log("[WHERE] - updateViewGetAllSwimMonthViewCB");
+	//console.log(JSON.stringify(data));
 	let columns = ['Date', 'Distance (m)'];
 	let neededData = new Array(data.length);
 	let dataForChart = new Array(data.length);
@@ -54,7 +54,7 @@ function updateViewGetAllSwimMonthViewCB(data, dataForCallback){
 }
 
 
-function updateViewGetAllSwimCB(data, dataForCallback){
+function updateViewGetAllSwimCB(dataForCallback, data){
 	let columns = ['Date', 'Distance (m)', 'Duration (min)', 'Mov Duration (min)', 'Location'];
 	let neededData = new Array(data.length);
 	var dataForChart = new Array(data.length);
@@ -118,7 +118,12 @@ function switchToSwimActivities(){
 }
 
 $("#swimSectionMenuBtnId").click(function(){
-    switchToSwimActivities();
+	let page = PageManager.getInstance();
+	page.clearPage();
+	page.showPage({
+		showPage : switchToSwimActivities()
+	});
+    
 });
 
 
