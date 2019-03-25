@@ -86,3 +86,7 @@ function addBasicBarChart(selector, column, serieName){
 	    }
 	});
 }
+
+function getUserId(){
+	return $('#currentUserInfo').attr('data-id');
+}

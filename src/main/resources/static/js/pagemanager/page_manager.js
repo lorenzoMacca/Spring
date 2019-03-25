@@ -24,7 +24,7 @@ function __version(){
 }
 
 function __clearPage(){
-	$(this.ELEMENTS).children().html('');
+	$(this.ELEMENTS).html('');
 }
 
 function __showPage(page){
