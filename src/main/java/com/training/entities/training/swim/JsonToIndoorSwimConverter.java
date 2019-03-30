@@ -19,6 +19,9 @@ import com.training.repo.training.swim.ISwimTRainingPatternRepository;
 import com.training.repo.training.swim.ISwimmingPlaceRepository;
 import com.training.repo.user.IUserRepository;
 
+import jsonutils.DataTimeUtils;
+import jsonutils.JsonUtils;
+
 //{
 //	"date":"2018-11-21",
 //	"time":"17:30",
@@ -47,26 +50,16 @@ public class JsonToIndoorSwimConverter implements EntityConverter<JsonNode, Indo
 	ISessionRepository sessionRepository;
 	@Autowired
 	UtilsConverter utilsConverter;
+	private JsonUtils jsonUtils= new JsonUtils();
 		
 	@Override
 	public IndoorSwim convert(JsonNode node) {
-		String dateString = node.get("date").textValue();
-		String dateStringSplitted[] = dateString.split("-");
-		LocalDate date = LocalDate.of(
-				Integer.parseInt(dateStringSplitted[0]), 
-				Integer.parseInt(dateStringSplitted[1]), 
-				Integer.parseInt(dateStringSplitted[2]));
 		
-		String timeString = node.get("time").textValue();
-		String timeStringSplitted[] = timeString.split(":");
-		LocalTime time = LocalTime.of(
-				Integer.parseInt(timeStringSplitted[0]),
-				Integer.parseInt(timeStringSplitted[1])
-				);
+		DataTimeUtils dataTimeUtils = this.jsonUtils.extractDateAndTime(node);
 		
 		String description = node.get("description").textValue();
-		Double duration = Double.parseDouble(node.get("duration").textValue());
-		Double movDuration = Double.parseDouble(node.get("movementDuration").textValue());
+		Double duration = this.jsonUtils.extractDouble(node, "duration");
+		Double movDuration = this.jsonUtils.extractDouble(node, "movementDuration");
 		Integer numberOfLaps = Integer.parseInt(node.get("numberOfLaps").textValue());
 		SwimmingPlace swimmingPlace = this.swimminPlaceRepository.getOne(Long.parseLong((node.get("swimmingPlace").textValue())));
 		
@@ -78,13 +71,13 @@ public class JsonToIndoorSwimConverter implements EntityConverter<JsonNode, Indo
         Session sessionFromDb = this.sessionRepository.save(session); //this.sessionRepositor.getOne(Long.parseLong((node.get("session").textValue())));
 
 		
-		IndoorSwim indoorSwim = IndoorSwim.builder().date(date)
+		IndoorSwim indoorSwim = IndoorSwim.builder().date(dataTimeUtils.getDate())
 				.description(description)
 				.duration(duration)
 				.numberOfLaps(numberOfLaps)
 				.poolLength(poolLength)
 				.session(sessionFromDb)
-				.time(time)
+				.time(dataTimeUtils.getTime())
 				.swimmingPlace(swimmingPlace)
 				.users(users)
 				.movementDuration(movDuration)

@@ -90,3 +90,28 @@ function addBasicBarChart(selector, column, serieName){
 function getUserId(){
 	return $('#currentUserInfo').attr('data-id');
 }
+
+/**
+ * create a json object from html element
+ * 
+ * @param parent defines the context
+ * @returns
+ */
+function inputFieldsValueToJson(parent){
+	//create empty object
+	let jsonObject = new Object();
+	//get all input field in context parent
+	let inputFields = $(parent).find('input');
+
+	//for each input field get the key and the value
+	for(let i=0; i<inputFields.length; i++){
+		let key   = $(inputFields[i]).attr('data-jsonName');
+		let value = $(inputFields[i]).val();
+		if(key !== undefined && value!== undefined){
+			jsonObject[key] = value;
+		}
+	}
+	//return the object
+	return jsonObject;
+}
+

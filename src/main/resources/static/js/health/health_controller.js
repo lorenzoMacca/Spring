@@ -3,6 +3,8 @@ var GET_HEALTH_BODY_MEASUREMENT_BY_USER_ID = "/users/{userId}/health/body_measur
 
 var HEALTH_ELEMENT_ID = '#healthContent';
 
+var health = Health.getInstance();
+
 
 $('#bodyMeasurementButton').click(function(){
 	let page = PageManager.getInstance();
@@ -17,8 +19,6 @@ function switchToHealthBodyMEasurement(){
 }
 
 function loadBodyMeasurement() {
-	//get health manager instance
-    let health = Health.getInstance();
 	//add sub-div to set all spaces
 	health.initHealthView();
 	//get user id
@@ -27,6 +27,13 @@ function loadBodyMeasurement() {
 	getAll(
         GET_HEALTH_BODY_MEASUREMENT_BY_USER_ID.replace('{userId}', userId),
         health.addBodyMeasurementTable,
-		{tableParentId:"#bodyMeasurementTableContent"}
+		{
+        	tableParentId:"#bodyMeasurementTableContent",
+        	healthObj: health
+        }
 	);
 }
+
+$('#bodyMEasurementSaveButton').click(function(){
+	health.saveBodyMEasurement('#healthBodyMeasurementModal');
+});
