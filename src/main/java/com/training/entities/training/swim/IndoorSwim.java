@@ -88,5 +88,13 @@ public class IndoorSwim implements Comparable<IndoorSwim>{
 		return r.getDate().compareTo(this.getDate());
 	}
 
+	@Override
+	public String toString() {
+		return "IndoorSwim [id=" + id + ", date=" + date + ", time=" + time + ", description=" + description
+				+ ", duration=" + duration +"]";
+	}
+	
+	
+
 	
 }
