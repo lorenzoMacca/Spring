@@ -1,4 +1,4 @@
-var INDOR_SWIM_GET_ALL = '/swims';
+var INDOR_SWIM_GET_ALL = '/users/{userId}/indorSwims';
 var INDOR_SWIM_GET_ALL_MONTH_VIEW = '/swims/month_view';
 
 var POOL_LENGTH_25_METER = "POOL_LENGTH_25_METER";
@@ -19,7 +19,7 @@ var swimActivitiesC3Utilities = {
 
 function addTabButtonFunktionalities(){
 	$("#tabBtn0").unbind('click').click(function(){
-		getAll(INDOR_SWIM_GET_ALL, updateViewGetAllSwimCB, null);
+		getAll(INDOR_SWIM_GET_ALL.replace('{userId}', getUserId()), updateViewGetAllSwimCB, null);
 		$(tabBtn1).removeClass("active");
 		$(tabBtn0).addClass("active");
 	});
@@ -113,7 +113,7 @@ function addTabs(){
 }
 
 function switchToSwimActivities(){
-    getAll(INDOR_SWIM_GET_ALL, updateViewGetAllSwimCB, null);
+    getAll(INDOR_SWIM_GET_ALL.replace('{userId}', getUserId()), updateViewGetAllSwimCB, null);
     addTabs();
 }
 

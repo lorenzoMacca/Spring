@@ -12,12 +12,15 @@ function __getInstance(){
 	return {
 		VERSION : 'HEALTH_001',
 		PARENT_ID : '#healthContent',
+		MODAL_ID : '#healthBodyMeasurementModal',
 		URL_SAVE_BODY_MEASUREMENT : "/users/health/body_measurements",
 		healthId : null,
 		version : __version,
 		initHealthView : __initHealthView,
 		initBehaviour : __initBehaviour,
 		addBodyMeasurementTable : __addBodyMeasurementTable,
+		getAllBodyMeasuremntByUserId : __getAllBodyMeasuremntByUserId, 
+		loadBodyMEasurement : __loadBodyMEasurement,
 		saveBodyMEasurement : __saveBodyMEasurement,
 		saveBodyMeasurementSuccessCallback : __saveBodyMeasurementSuccessCallback,
 		saveBodyMeasurementFailureCallback : __saveBodyMeasurementFailureCallback 
@@ -26,6 +29,26 @@ function __getInstance(){
 
 function __version(){
 	return this.VERSION;
+}
+
+function __getAllBodyMeasuremntByUserId(userId){
+	getAll(
+	        GET_HEALTH_BODY_MEASUREMENT_BY_USER_ID.replace('{userId}', userId),
+	        health.addBodyMeasurementTable,
+			{
+	        	tableParentId:"#bodyMeasurementTableContent",
+	        	healthObj: health
+	        }
+		);
+}
+
+function __loadBodyMEasurement(){
+	//add sub-div to set all spaces
+	health.initHealthView();
+	//get user id
+    let userId = getUserId();
+    //load date for the current user and create a table
+	this.getAllBodyMeasuremntByUserId(userId);
 }
 
 function __initHealthView(){
@@ -63,12 +86,15 @@ function __addBodyMeasurementTable(dataForCallback, dataHealth) {
     createAndFillTable(parentId, columns, neededData, "bodyMeasurementsTableId", true);
 }
 
-function __saveBodyMeasurementSuccessCallback(){
+function __saveBodyMeasurementSuccessCallback(dataForCb, data, textStatus, xhr){
+	$(dataForCb['modalId']).modal('hide');
+	notifySuccess("Body measurement saved.");
+	dataForCb['health'].getAllBodyMeasuremntByUserId(getUserId());
 	
 }
 
 function __saveBodyMeasurementFailureCallback(){
-	
+	notifyFailure("Sorry :( but something went wrong.");
 }
 
 
@@ -79,7 +105,10 @@ function __saveBodyMEasurement(parent){
 			this.URL_SAVE_BODY_MEASUREMENT,
 			"POST",
 			bodyMeasurementJsonObject,
-			bodyMeasurementJsonObject,
+			{
+				modalId : this.MODAL_ID,
+				health  : this
+			},
 			this.saveBodyMeasurementSuccessCallback,
 			this.saveBodyMeasurementFailureCallback
 			);

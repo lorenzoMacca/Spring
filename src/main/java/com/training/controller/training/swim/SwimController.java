@@ -41,7 +41,9 @@ public class SwimController {
 
     @GetMapping("/users/{userId}/indorSwims")
     public Iterable<IndoorSwim> getAllSwimActivitiesByUserId(@PathVariable(value="userId") Long userId){
-        return this.swimService.getAllIndorSwimActivities(userId);
+    	List<IndoorSwim> res = (List<IndoorSwim>) this.swimService.getAllIndorSwimActivities(userId);
+    	Collections.sort(res);
+        return res;
     }
 
     @DeleteMapping("/training/swim/activity/delete")

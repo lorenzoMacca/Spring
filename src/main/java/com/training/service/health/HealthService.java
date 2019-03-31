@@ -11,6 +11,7 @@ import com.training.entities.health.QHealth;
 import com.training.repo.health.IBodyMEasurementRepository;
 import com.training.repo.health.IHealthRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -27,7 +28,9 @@ public class HealthService {
 	
 	public Health getHealthByUser(Long userId){
 		Predicate predicate = QHealth.health.user.id.eq(userId);
-		return this.healthRepository.findOne(predicate).get();
+		Health health =  this.healthRepository.findOne(predicate).get();
+		Collections.sort(health.getBodyMeasurements());
+		return health;
 	}
 
 	public List<BodyMeasurement> getHealthBodyMeasurementsByUser(Long userId){

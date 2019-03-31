@@ -1,19 +1,13 @@
 package com.training.entities.health.Bodymeasurement;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Columns;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.training.entities.health.Health;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BodyMeasurement {
+public class BodyMeasurement implements Comparable<BodyMeasurement>{
 	
 	@Id
 	@GeneratedValue
@@ -49,6 +43,11 @@ public class BodyMeasurement {
     @ManyToOne
     @JsonBackReference
 	private Health health;
+
+	@Override
+	public int compareTo(BodyMeasurement arg0) {
+		return arg0.getDate().compareTo(this.date);
+	}
 	
 	
 

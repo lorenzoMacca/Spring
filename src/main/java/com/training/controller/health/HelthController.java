@@ -22,11 +22,6 @@ public class HelthController {
 
 	@Autowired
 	private HealthService healthService;
-	
-	@GetMapping("/users/{userId}/health")
-	public Health getHealthByUser(@PathVariable(name="userId") Long userId){
-		return this.healthService.getHealthByUser(userId);
-	}
 
 	@GetMapping("/users/{userId}/health/body_measurements")
 	public Health getHealthBodyMeasurementsByUser(@PathVariable(name="userId") Long userId){
