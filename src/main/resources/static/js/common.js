@@ -13,7 +13,11 @@ function createAndFillTable(parentId, columns, data, tableId, filter){
 	for (var i = 0; i < data.length; i++) {
 		htmlDate +="<tr class='myTrainingTrClickable' >";
 		for (var j = 0; j < data[i].length; j++) {
-			htmlDate += "<td>"+ data[i][j] +"</td>";
+			let value = "";
+			if(data[i][j] !== undefined && data[i][j] !==null){
+				value = data[i][j];
+			}
+			htmlDate += "<td>"+ value +"</td>";
 		}
 		htmlDate +="</tr>";
 	}
