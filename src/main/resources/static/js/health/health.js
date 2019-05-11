@@ -83,7 +83,8 @@ function __addBodyMeasurementTable(dataForCallback, dataHealth) {
         let thigh = data[i].thigh;
         neededData[i] = [date, weight, upperArm, chest, waist, hips, thigh];
     }
-    createAndFillTable(parentId, columns, neededData, "bodyMeasurementsTableId", true);
+    let selectColumnsConfig = getSelectColumnConfig();
+    createAndFillTable(parentId, columns, neededData, "bodyMeasurementsTableId", true, selectColumnsConfig);
 }
 
 function __saveBodyMeasurementSuccessCallback(dataForCb, data, textStatus, xhr){

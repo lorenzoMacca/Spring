@@ -4,15 +4,32 @@ function getAll(url, callback, dataForCallback){
 	AjaxSetUp.sendGetRequest(url,dataForCallback, callback);
 }
 
-function createAndFillTable(parentId, columns, data, tableId, filter){
-	var htmlColumns = "";
+function getSelectColumnConfig(){
+	return {
+		attributes : [],
+		addAttribute : function(name, dataValueKey){
+			attributes.push(name+'='+dataValueKey);
+		}
+	};
+}
+
+function createAndFillTable(parentId, columns, data, tableId, filter, selectColumnConfig){
+	let htmlColumns = "";
+	if(selectColumnConfig !== undefined){
+		htmlColumns = "<th scope='col'>Select</th>"
+	}
 	columns.forEach(function(element) {
 		htmlColumns += "<th scope='col'>"+ element +"</th>"
 	});
-	var htmlDate = "";
-	for (var i = 0; i < data.length; i++) {
+	let htmlDate = "";
+	for (let i = 0; i < data.length; i++) {
 		htmlDate +="<tr class='myTrainingTrClickable' >";
-		for (var j = 0; j < data[i].length; j++) {
+		
+		if(selectColumnConfig !== undefined){
+			htmlDate += "<td><input type='checkbox'></td>";
+		}
+		
+		for (let j = 0; j < data[i].length; j++) {
 			let value = "";
 			if(data[i][j] !== undefined && data[i][j] !==null){
 				value = data[i][j];

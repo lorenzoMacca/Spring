@@ -19,7 +19,8 @@ The difference between the two preceding commands is that without --databases, t
 
 # insert manual run activity
 insert into session values(ID);
-insert into run (date, description, distance, duration, time, session_id) values('2019-03-04', null, 7.03, 40.30, '17:29:00', 132);
+insert into run (id, date, description, distance, duration, time, session_id) values(132,'2019-03-31', null, 5.73, 31.36, '16:23:00', 154);
+
 
 create table
 
